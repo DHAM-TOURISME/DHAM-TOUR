@@ -1,102 +1,144 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHAM-TOURISME</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-        }
-        
-        header {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-image: url('background-image.jpg'); /* Remplace avec le chemin de ton image de fond */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHAM-TOURISME</title>
+  <style>
+    /* Styles de base pour la page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e8f5ff;
+      color: #333;
+      text-align: center;
+    }
 
-        .header-content {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 8px;
-        }
+    /* Bannière d'accueil */
+    .banner {
+      background-image: url('https://source.unsplash.com/1600x900/?travel');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 20px;
+    }
+    .banner h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .banner p {
+      font-size: 1.2em;
+    }
 
-        h1 {
-            font-size: 3em;
-            margin: 0;
-        }
+    /* Style du menu et du bouton */
+    .menu-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5em;
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+    }
+    .menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      width: 200px;
+      height: 100vh;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+      padding-top: 60px;
+      text-align: left;
+    }
+    .menu.show {
+      display: block;
+    }
+    .menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu ul li {
+      padding: 15px 20px;
+    }
+    .menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
 
-        .menu-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            color: white;
-        }
-
-        .menu {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .menu.show {
-            display: block;
-        }
-
-        .menu a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 8px 0;
-            font-size: 1.2em;
-        }
-
-        .menu a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    /* Style du contenu principal */
+    .content {
+      padding: 20px;
+    }
+    .content section {
+      margin: 40px 0;
+    }
+    .content h2 {
+      color: #007acc;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div class="header-content">
-            <h1>Bienvenue chez DHAM-TOURISME</h1>
-            <p>Explorez le Bénin avec des expériences uniques</p>
-        </div>
-        <div class="menu">
-            <a href="#se-connecter">SE CONNECTER</a>
-            <a href="#accueil">ACCUEIL</a>
-            <a href="#qui-sommes-nous">QUI SOMMES NOUS ?</a>
-            <a href="#nos-activites">NOS ACTIVITÉS</a>
-            <a href="#galerie">GALERIE</a>
-            <a href="#offres-promos">OFFRES PROMOS</a>
-            <a href="#visa">VISA</a>
-            <a href="#contactez-nous">CONTACTEZ-NOUS</a>
-        </div>
-    </header>
+  <!-- Bouton du menu -->
+  <button class="menu-button" onclick="toggleMenu()">☰</button>
 
-    <script>
-        function toggleMenu() {
-            document.querySelector(".menu").classList.toggle("show");
-        }
-    </script>
+  <!-- Menu latéral -->
+  <nav class="menu">
+    <ul>
+      <li><a href="#accueil">ACCUEIL</a></li>
+      <li><a href="#qui-sommes-nous">QUI SOMMES NOUS ?</a></li>
+      <li><a href="#activites">NOS ACTIVITÉS</a></li>
+      <li><a href="#galerie">GALERIE</a></li>
+      <li><a href="#offres-promos">OFFRES PROMOS</a></li>
+      <li><a href="#visa">VISA</a></li>
+      <li><a href="#contact">CONTACTEZ-NOUS</a></li>
+      <li><a href="#se-connecter">SE CONNECTER</a></li>
+    </ul>
+  </nav>
+
+  <!-- Bannière d'accueil -->
+  <div class="banner">
+    <h1>Bienvenue chez DHAM-TOURISME</h1>
+    <p>Explorez le Bénin avec des expériences uniques</p>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="content">
+    <section id="qui-sommes-nous">
+      <h2>Qui sommes-nous ?</h2>
+      <p>Découvrez la richesse de la culture, du patrimoine et des paysages pittoresques du Bénin avec DHAM-TOURISME.</p>
+    </section>
+    <section id="activites">
+      <h2>Nos Activités</h2>
+      <p>Explorez nos diverses activités touristiques pour une expérience inoubliable au Bénin.</p>
+    </section>
+    <section id="galerie">
+      <h2>Galerie</h2>
+      <p>Découvrez des photos des magnifiques paysages et moments capturés.</p>
+    </section>
+    <section id="offres-promos">
+      <h2>Offres Promos</h2>
+      <p>Profitez de nos offres spéciales pour découvrir le Bénin à des tarifs attractifs.</p>
+    </section>
+    <section id="visa">
+      <h2>Visa</h2>
+      <p>Toutes les informations nécessaires pour obtenir votre visa pour le Bénin.</p>
+    </section>
+    <section id="contact">
+      <h2>Contactez-nous</h2>
+      <p>N'hésitez pas à nous contacter pour toute question ou demande de renseignement.</p>
+    </section>
+  </div>
+
+  <!-- Script JavaScript pour le menu -->
+  <script>
+    function toggleMenu() {
+      document.querySelector(".menu").classList.toggle("show");
+    }
+  </script>
 </body>
 </html>
