@@ -1,32 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DHAM-TOURISME</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHAM-TOURISME</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        
+        header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('background-image.jpg'); /* Remplace avec le chemin de ton image de fond */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .header-content {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .menu-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: white;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .menu.show {
+            display: block;
+        }
+
+        .menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 0;
+            font-size: 1.2em;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="menu">
-      <div class="menu-icon" onclick="toggleMenu()">☰</div>
-      <div class="menu-content">
-        <a href="#se-connecter">SE CONNECTER</a>
-        <a href="#accueil">ACCUEIL</a>
-        <a href="#qui-sommes-nous">QUI SOMMES NOUS ?</a>
-        <a href="#activites">NOS ACTIVITÉS</a>
-        <a href="#galerie">GALERIE</a>
-        <a href="#promos">OFFRES PROMOS</a>
-        <a href="#visa">VISA</a>
-        <a href="#contact">CONTACTEZ-NOUS</a>
-      </div>
-    </div>
-    <div class="banner">
-      <h1>Bienvenue chez DHAM-TOURISME</h1>
-      <p>Explorez le Bénin avec des expériences uniques</p>
-    </div>
-  </header>
-  
-  <script src="script.js"></script>
+    <header>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="header-content">
+            <h1>Bienvenue chez DHAM-TOURISME</h1>
+            <p>Explorez le Bénin avec des expériences uniques</p>
+        </div>
+        <div class="menu">
+            <a href="#se-connecter">SE CONNECTER</a>
+            <a href="#accueil">ACCUEIL</a>
+            <a href="#qui-sommes-nous">QUI SOMMES NOUS ?</a>
+            <a href="#nos-activites">NOS ACTIVITÉS</a>
+            <a href="#galerie">GALERIE</a>
+            <a href="#offres-promos">OFFRES PROMOS</a>
+            <a href="#visa">VISA</a>
+            <a href="#contactez-nous">CONTACTEZ-NOUS</a>
+        </div>
+    </header>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector(".menu").classList.toggle("show");
+        }
+    </script>
 </body>
 </html>
