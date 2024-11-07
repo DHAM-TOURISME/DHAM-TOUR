@@ -1,73 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHAM-TOURISME</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHAM-TOURISME</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Domicile</a></li>
-                <li><a href="#about">Environ</a></li>
-                <li><a href="#gallery">Galerie</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Bienvenue chez DHAM-TOURISME</h1>
-        <p>Explorez le Bénin avec des expériences uniques</p>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2>Qui sommes-nous</h2>
-        <p>Découvrez la richesse de la culture, du patrimoine et des paysages pittoresques du Bénin avec DHAM-TOURISME.</p>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <h2>Galerie</h2>
-        <div class="gallery-container">
-            <img src="images/photo1.jpg" alt="Photo 1">
-            <img src="images/photo2.jpg" alt="Photo 2">
-            <img src="images/photo3.jpg" alt="Photo 3">
-        </div>
-    </section>
-
-    <!-- Contact Section with Social Media Links -->
-    <section id="contact" class="contact">
-        <h2>Contactez-nous</h2>
-        <p>Restez connecté avec nous sur les réseaux sociaux</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" target="_blank"><img src="images/instagram-icon.png" alt="Instagram"></a>
-            <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank"><img src="images/facebook-icon.png" alt="Facebook"></a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 DHAM-TOURISME. Tous droits réservés.</p>
-    </footer>
-
-    <!-- JavaScript for Slideshow -->
-    <script>
-        let slideIndex = 0;
-        function showSlides() {
-            const slides = document.querySelectorAll(".gallery-container img");
-            slides.forEach((slide, index) => {
-                slide.style.display = (index === slideIndex) ? "block" : "none";
-            });
-            slideIndex = (slideIndex + 1) % slides.length;
-            setTimeout(showSlides, 2000);
-        }
-        document.addEventListener("DOMContentLoaded", showSlides);
-    </script>
+  <header>
+    <div class="menu">
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+      <div class="menu-content">
+        <a href="#se-connecter">SE CONNECTER</a>
+        <a href="#accueil">ACCUEIL</a>
+        <a href="#qui-sommes-nous">QUI SOMMES NOUS ?</a>
+        <a href="#activites">NOS ACTIVITÉS</a>
+        <a href="#galerie">GALERIE</a>
+        <a href="#promos">OFFRES PROMOS</a>
+        <a href="#visa">VISA</a>
+        <a href="#contact">CONTACTEZ-NOUS</a>
+      </div>
+    </div>
+    <div class="banner">
+      <h1>Bienvenue chez DHAM-TOURISME</h1>
+      <p>Explorez le Bénin avec des expériences uniques</p>
+    </div>
+  </header>
+  
+  <script src="script.js"></script>
 </body>
 </html>
