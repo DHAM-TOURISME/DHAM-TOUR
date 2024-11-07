@@ -15,28 +15,13 @@
       text-align: center;
     }
 
-    /* Vidéo de fond pour la bannière */
+    /* Bannière d'accueil */
     .banner {
-      position: relative;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-image: url('https://source.unsplash.com/1600x900/?travel');
+      background-size: cover;
+      background-position: center;
       color: white;
-    }
-    .banner video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .banner h1, .banner p {
-      position: relative;
-      z-index: 1;
+      padding: 100px 20px;
     }
     .banner h1 {
       font-size: 2.5em;
@@ -56,7 +41,6 @@
       border: none;
       color: #333;
       cursor: pointer;
-      z-index: 1000; /* Assure que le bouton est visible par-dessus tout */
     }
     .menu {
       display: none;
@@ -69,7 +53,6 @@
       box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
       padding-top: 60px;
       text-align: left;
-      z-index: 1000; /* Assure que le menu est visible par-dessus tout */
     }
     .menu.show {
       display: block;
@@ -118,12 +101,8 @@
     </ul>
   </nav>
 
-  <!-- Bannière d'accueil avec vidéo de fond -->
+  <!-- Bannière d'accueil -->
   <div class="banner">
-    <video autoplay muted loop>
-      <source src="votre-video.mp4" type="video/mp4">
-      Votre navigateur ne supporte pas les vidéos HTML5.
-    </video>
     <h1>Bienvenue chez DHAM-TOURISME</h1>
     <p>Explorez le Bénin avec des expériences uniques</p>
   </div>
