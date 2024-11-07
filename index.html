@@ -15,13 +15,28 @@
       text-align: center;
     }
 
-    /* Bannière d'accueil */
+    /* Vidéo de fond pour la bannière */
     .banner {
-      background-image: url('https://source.unsplash.com/1600x900/?travel');
-      background-size: cover;
-      background-position: center;
+      position: relative;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      padding: 100px 20px;
+    }
+    .banner video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .banner h1, .banner p {
+      position: relative;
+      z-index: 1;
     }
     .banner h1 {
       font-size: 2.5em;
@@ -41,6 +56,7 @@
       border: none;
       color: #333;
       cursor: pointer;
+      z-index: 1000;
     }
     .menu {
       display: none;
@@ -53,6 +69,7 @@
       box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
       padding-top: 60px;
       text-align: left;
+      z-index: 1000;
     }
     .menu.show {
       display: block;
@@ -81,6 +98,26 @@
     .content section.show {
       display: block;
     }
+
+    /* Style pour la galerie d'activités */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 200px;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -101,8 +138,12 @@
     </ul>
   </nav>
 
-  <!-- Bannière d'accueil -->
+  <!-- Bannière d'accueil avec vidéo de fond -->
   <div class="banner">
+    <video autoplay loop muted playsinline>
+      <source src="ton-fichier-video.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas les vidéos HTML5.
+    </video>
     <h1>Bienvenue chez DHAM-TOURISME</h1>
     <p>Explorez le Bénin avec des expériences uniques</p>
   </div>
@@ -119,7 +160,13 @@
     </section>
     <section id="activites">
       <h2>Nos Activités</h2>
-      <p>Nous proposons diverses activités : visites culturelles, circuits nature, excursions en bord de mer et bien plus encore. Que vous soyez en quête d'aventure ou de détente, DHAM-TOURISME a quelque chose pour vous.</p>
+      <p>Nous proposons diverses activités : visites culturelles, circuits nature, excursions en bord de mer et bien plus encore.</p>
+      <!-- Galerie d'images ou vidéos pour illustrer les activités -->
+      <div class="gallery">
+        <img src="https://source.unsplash.com/200x200/?culture" alt="Culture">
+        <img src="https://source.unsplash.com/200x200/?nature" alt="Nature">
+        <img src="https://source.unsplash.com/200x200/?sea" alt="Mer">
+      </div>
     </section>
     <section id="galerie">
       <h2>Galerie</h2>
