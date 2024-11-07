@@ -1,56 +1,209 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHAM-TOURISME</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHAM-TOURISME</title>
+  <style>
+    /* Styles de base pour la page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e8f5ff;
+      color: #333;
+      text-align: center;
+    }
+
+    /* Vidéo de fond pour la bannière */
+    .banner {
+      position: relative;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .banner video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .banner h1, .banner p {
+      position: relative;
+      z-index: 1;
+    }
+    .banner h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .banner p {
+      font-size: 1.2em;
+    }
+
+    /* Style du menu et du bouton */
+    .menu-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5em;
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      width: 200px;
+      height: 100vh;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+      padding-top: 60px;
+      text-align: left;
+      z-index: 1000;
+    }
+    .menu.show {
+      display: block;
+    }
+    .menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu ul li {
+      padding: 15px 20px;
+    }
+    .menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    /* Cacher toutes les sections de contenu */
+    .content section {
+      display: none;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    /* Section visible */
+    .content section.show {
+      display: block;
+    }
+
+    /* Style pour la galerie d'activités */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 200px;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-    <!-- Section de bienvenue avec vidéo de fond -->
-    <section class="welcome-section">
-        <video autoplay muted loop>
-            <source src="votre_video.mp4" type="video/mp4">
-        </video>
-        <h1 class="welcome-text">Bienvenue chez DHAM-TOURISME</h1>
-        <p>Explorez le Bénin avec des expériences uniques</p>
+  <!-- Bouton du menu -->
+  <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+  <!-- Menu latéral -->
+  <nav class="menu">
+    <ul>
+      <li><a href="#accueil" onclick="showSection('accueil')">ACCUEIL</a></li>
+      <li><a href="#qui-sommes-nous" onclick="showSection('qui-sommes-nous')">QUI SOMMES NOUS ?</a></li>
+      <li><a href="#activites" onclick="showSection('activites')">NOS ACTIVITÉS</a></li>
+      <li><a href="#galerie" onclick="showSection('galerie')">GALERIE</a></li>
+      <li><a href="#offres-promos" onclick="showSection('offres-promos')">OFFRES PROMOS</a></li>
+      <li><a href="#visa" onclick="showSection('visa')">VISA</a></li>
+      <li><a href="#contact" onclick="showSection('contact')">CONTACTEZ-NOUS</a></li>
+      <li><a href="#se-connecter" onclick="showSection('se-connecter')">SE CONNECTER</a></li>
+    </ul>
+  </nav>
+
+  <!-- Bannière d'accueil avec vidéo de fond -->
+  <div class="banner">
+    <video autoplay loop muted playsinline>
+      <source src="ton-fichier-video.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas les vidéos HTML5.
+    </video>
+    <h1>Bienvenue chez DHAM-TOURISME</h1>
+    <p>Explorez le Bénin avec des expériences uniques</p>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="content">
+    <section id="accueil" class="show">
+      <h2>Accueil</h2>
+      <p>Bienvenue chez DHAM-TOURISME ! Nous sommes ravis de vous faire découvrir le Bénin sous un angle unique. Nos services sont conçus pour vous offrir des expériences mémorables et immersives.</p>
     </section>
-
-    <!-- Icône et menu déroulant -->
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <nav class="menu" id="menu">
-        <a href="#">SE CONNECTER</a>
-        <a href="#">ACCUEIL</a>
-        <a href="#">QUI SOMMES NOUS ?</a>
-        <a href="#">NOS ACTIVITÉS</a>
-        <a href="#">GALERIE</a>
-        <a href="#">OFFRES PROMOS</a>
-        <a href="#">VISA</a>
-        <a href="#">CONTACTEZ-NOUS</a>
-    </nav>
-
-    <!-- Section principale avec le contenu d'accueil -->
-    <section id="accueil">
-        <h2>Accueil</h2>
-        <p>Bienvenue chez DHAM-TOURISME ! Nous sommes ravis de vous faire découvrir le Bénin sous un angle unique. Nos services sont conçus pour vous offrir des expériences mémorables et immersives.</p>
+    <section id="qui-sommes-nous">
+      <h2>Qui sommes-nous ?</h2>
+      <p>DHAM-TOURISME est une agence dédiée à la promotion des richesses culturelles et naturelles du Bénin. Notre mission est de créer des liens entre les voyageurs et les communautés locales, tout en valorisant notre patrimoine.</p>
     </section>
+    <section id="activites">
+      <h2>Nos Activités</h2>
+      <p>Nous proposons diverses activités : visites culturelles, circuits nature, excursions en bord de mer et bien plus encore.</p>
+      <!-- Galerie d'images ou vidéos pour illustrer les activités -->
+      <div class="gallery">
+        <img src="https://source.unsplash.com/200x200/?culture" alt="Culture">
+        <img src="https://source.unsplash.com/200x200/?nature" alt="Nature">
+        <img src="https://source.unsplash.com/200x200/?sea" alt="Mer">
+      </div>
+    </section>
+    <section id="galerie">
+      <h2>Galerie</h2>
+      <p>Découvrez les moments forts de nos voyages à travers notre galerie photo. Chaque image raconte une histoire, un souvenir inoubliable de nos expéditions au Bénin.</p>
+    </section>
+    <section id="offres-promos">
+      <h2>Offres Promos</h2>
+      <p>Profitez de nos offres spéciales pour explorer le Bénin à des tarifs avantageux. Nos promotions sont disponibles pour une durée limitée, alors ne tardez pas !</p>
+    </section>
+    <section id="visa">
+      <h2>Visa</h2>
+      <p>Vous planifiez une visite au Bénin ? Nous vous aidons dans les démarches pour l'obtention de votre visa. Contactez-nous pour plus de détails sur les formalités d'entrée.</p>
+    </section>
+    <section id="contact">
+      <h2>Contactez-nous</h2>
+      <p>Pour toute question ou demande d'information, n'hésitez pas à nous contacter. Nous sommes disponibles pour vous aider à préparer votre voyage.</p>
+    </section>
+    <section id="se-connecter">
+      <h2>Se Connecter</h2>
+      <p>Accédez à votre espace personnel pour gérer vos réservations et explorer davantage d'options. Connectez-vous pour bénéficier de services personnalisés.</p>
+    </section>
+  </div>
 
-    <!-- Section des icônes des réseaux sociaux -->
-    <div class="social-icons">
-        <a href="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" target="_blank">Instagram</a>
-        <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank">Facebook</a>
-    </div>
+  <!-- Script JavaScript pour le menu et pour afficher les sections -->
+  <script>
+    function toggleMenu() {
+      document.querySelector(".menu").classList.toggle("show");
+    }
 
-    <script>
-        // Fonction pour ouvrir/fermer le menu
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            if (menu.style.right === "0px") {
-                menu.style.right = "-100%";
-            } else {
-                menu.style.right = "0";
-            }
-        }
-    </script>
+    function showSection(id) {
+      // Masquer toutes les sections
+      document.querySelectorAll(".content section").forEach(section => section.classList.remove("show"));
+      // Afficher la section sélectionnée
+      document.getElementById(id).classList.add("show");
+      // Fermer le menu après sélection
+      toggleMenu();
+    }
+  </script>
 </body>
 </html>
