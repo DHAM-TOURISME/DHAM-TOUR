@@ -70,15 +70,16 @@
       font-weight: bold;
     }
 
-    /* Style du contenu principal */
-    .content {
-      padding: 20px;
-    }
+    /* Cacher toutes les sections de contenu */
     .content section {
-      margin: 40px 0;
+      display: none;
+      padding: 20px;
+      margin-top: 20px;
     }
-    .content h2 {
-      color: #007acc;
+
+    /* Section visible */
+    .content section.show {
+      display: block;
     }
   </style>
 </head>
@@ -89,14 +90,14 @@
   <!-- Menu latéral -->
   <nav class="menu">
     <ul>
-      <li><a href="#accueil">ACCUEIL</a></li>
-      <li><a href="#qui-sommes-nous">QUI SOMMES NOUS ?</a></li>
-      <li><a href="#activites">NOS ACTIVITÉS</a></li>
-      <li><a href="#galerie">GALERIE</a></li>
-      <li><a href="#offres-promos">OFFRES PROMOS</a></li>
-      <li><a href="#visa">VISA</a></li>
-      <li><a href="#contact">CONTACTEZ-NOUS</a></li>
-      <li><a href="#se-connecter">SE CONNECTER</a></li>
+      <li><a href="#accueil" onclick="showSection('accueil')">ACCUEIL</a></li>
+      <li><a href="#qui-sommes-nous" onclick="showSection('qui-sommes-nous')">QUI SOMMES NOUS ?</a></li>
+      <li><a href="#activites" onclick="showSection('activites')">NOS ACTIVITÉS</a></li>
+      <li><a href="#galerie" onclick="showSection('galerie')">GALERIE</a></li>
+      <li><a href="#offres-promos" onclick="showSection('offres-promos')">OFFRES PROMOS</a></li>
+      <li><a href="#visa" onclick="showSection('visa')">VISA</a></li>
+      <li><a href="#contact" onclick="showSection('contact')">CONTACTEZ-NOUS</a></li>
+      <li><a href="#se-connecter" onclick="showSection('se-connecter')">SE CONNECTER</a></li>
     </ul>
   </nav>
 
@@ -108,36 +109,53 @@
 
   <!-- Contenu principal -->
   <div class="content">
+    <section id="accueil" class="show">
+      <h2>Accueil</h2>
+      <p>Bienvenue chez DHAM-TOURISME ! Nous sommes ravis de vous faire découvrir le Bénin sous un angle unique. Nos services sont conçus pour vous offrir des expériences mémorables et immersives.</p>
+    </section>
     <section id="qui-sommes-nous">
       <h2>Qui sommes-nous ?</h2>
-      <p>Découvrez la richesse de la culture, du patrimoine et des paysages pittoresques du Bénin avec DHAM-TOURISME.</p>
+      <p>DHAM-TOURISME est une agence dédiée à la promotion des richesses culturelles et naturelles du Bénin. Notre mission est de créer des liens entre les voyageurs et les communautés locales, tout en valorisant notre patrimoine.</p>
     </section>
     <section id="activites">
       <h2>Nos Activités</h2>
-      <p>Explorez nos diverses activités touristiques pour une expérience inoubliable au Bénin.</p>
+      <p>Nous proposons diverses activités : visites culturelles, circuits nature, excursions en bord de mer et bien plus encore. Que vous soyez en quête d'aventure ou de détente, DHAM-TOURISME a quelque chose pour vous.</p>
     </section>
     <section id="galerie">
       <h2>Galerie</h2>
-      <p>Découvrez des photos des magnifiques paysages et moments capturés.</p>
+      <p>Découvrez les moments forts de nos voyages à travers notre galerie photo. Chaque image raconte une histoire, un souvenir inoubliable de nos expéditions au Bénin.</p>
     </section>
     <section id="offres-promos">
       <h2>Offres Promos</h2>
-      <p>Profitez de nos offres spéciales pour découvrir le Bénin à des tarifs attractifs.</p>
+      <p>Profitez de nos offres spéciales pour explorer le Bénin à des tarifs avantageux. Nos promotions sont disponibles pour une durée limitée, alors ne tardez pas !</p>
     </section>
     <section id="visa">
       <h2>Visa</h2>
-      <p>Toutes les informations nécessaires pour obtenir votre visa pour le Bénin.</p>
+      <p>Vous planifiez une visite au Bénin ? Nous vous aidons dans les démarches pour l'obtention de votre visa. Contactez-nous pour plus de détails sur les formalités d'entrée.</p>
     </section>
     <section id="contact">
       <h2>Contactez-nous</h2>
-      <p>N'hésitez pas à nous contacter pour toute question ou demande de renseignement.</p>
+      <p>Pour toute question ou demande d'information, n'hésitez pas à nous contacter. Nous sommes disponibles pour vous aider à préparer votre voyage.</p>
+    </section>
+    <section id="se-connecter">
+      <h2>Se Connecter</h2>
+      <p>Accédez à votre espace personnel pour gérer vos réservations et explorer davantage d'options. Connectez-vous pour bénéficier de services personnalisés.</p>
     </section>
   </div>
 
-  <!-- Script JavaScript pour le menu -->
+  <!-- Script JavaScript pour le menu et pour afficher les sections -->
   <script>
     function toggleMenu() {
       document.querySelector(".menu").classList.toggle("show");
+    }
+
+    function showSection(id) {
+      // Masquer toutes les sections
+      document.querySelectorAll(".content section").forEach(section => section.classList.remove("show"));
+      // Afficher la section sélectionnée
+      document.getElementById(id).classList.add("show");
+      // Fermer le menu après sélection
+      toggleMenu();
     }
   </script>
 </body>
