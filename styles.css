@@ -1,92 +1,70 @@
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
+/* Style général du corps */
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f5f9fc;
-    color: #333;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Navigation */
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 10px;
-    background-color: #87CEFA;
+/* Style pour l'en-tête */
+header {
+  position: relative;
+  background-color: #d0e9ff;
+  text-align: center;
+  padding: 60px 20px;
 }
 
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
+/* Bannière principale */
+.banner h1 {
+  font-size: 36px;
+  color: #2e3b4e;
 }
 
-/* Hero Section */
-.hero {
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(180deg, #87CEFA, #4682B4);
-    color: white;
-    text-align: center;
+.banner p {
+  font-size: 20px;
+  color: #2e3b4e;
 }
 
-/* About Section */
-.about {
-    width: 80%;
-    padding: 40px;
-    background-color: #e6f7ff;
-    text-align: center;
+/* Style pour le menu */
+.menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
 }
 
-/* Gallery Section */
-.gallery {
-    width: 80%;
-    padding: 40px;
+/* Icône de menu (trois tirets) */
+.menu-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #2e3b4e;
 }
 
-.gallery-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+/* Contenu du menu, caché par défaut */
+.menu-content {
+  display: none;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 40px;
+  right: 0;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.gallery-container img {
-    width: 100%;
-    max-width: 300px;
-    display: none;
-    border-radius: 8px;
+/* Style des liens du menu */
+.menu-content a {
+  color: white;
+  text-decoration: none;
+  margin: 5px 0;
+  padding: 5px;
+  transition: background 0.3s;
 }
 
-/* Contact Section */
-.contact {
-    width: 80%;
-    padding: 40px;
-    text-align: center;
-    background-color: #f0f8ff;
+.menu-content a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.social-links a img {
-    width: 30px;
-    margin: 0 10px;
-}
-
-/* Footer */
-footer {
-    background-color: #87CEFA;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
+/* Affichage du menu lors du clic */
+.menu.show .menu-content {
+  display: flex;
 }
