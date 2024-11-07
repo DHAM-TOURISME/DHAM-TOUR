@@ -15,12 +15,15 @@
       text-align: center;
     }
 
-    /* Bannière avec vidéo de fond */
+    /* Vidéo de fond pour la bannière */
     .banner {
       position: relative;
-      color: white;
-      padding: 100px 20px;
       overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
     }
     .banner video {
       position: absolute;
@@ -30,7 +33,6 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-      opacity: 0.5;
     }
     .banner h1, .banner p {
       position: relative;
@@ -54,6 +56,7 @@
       border: none;
       color: #333;
       cursor: pointer;
+      z-index: 1000; /* Assure que le bouton est visible par-dessus tout */
     }
     .menu {
       display: none;
@@ -66,6 +69,7 @@
       box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
       padding-top: 60px;
       text-align: left;
+      z-index: 1000; /* Assure que le menu est visible par-dessus tout */
     }
     .menu.show {
       display: block;
@@ -114,10 +118,11 @@
     </ul>
   </nav>
 
-  <!-- Bannière avec vidéo de fond -->
+  <!-- Bannière d'accueil avec vidéo de fond -->
   <div class="banner">
     <video autoplay muted loop>
-      <source src="votre_video.mp4" type="video/mp4">
+      <source src="votre-video.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas les vidéos HTML5.
     </video>
     <h1>Bienvenue chez DHAM-TOURISME</h1>
     <p>Explorez le Bénin avec des expériences uniques</p>
@@ -136,9 +141,6 @@
     <section id="activites">
       <h2>Nos Activités</h2>
       <p>Nous proposons diverses activités : visites culturelles, circuits nature, excursions en bord de mer et bien plus encore. Que vous soyez en quête d'aventure ou de détente, DHAM-TOURISME a quelque chose pour vous.</p>
-      <div class="media-gallery">
-        <!-- Ajoutez ici les photos/vidéos pour illustrer chaque activité -->
-      </div>
     </section>
     <section id="galerie">
       <h2>Galerie</h2>
