@@ -1,93 +1,93 @@
-/* Styles de base pour la page */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #e8f5ff;
-  color: #333;
-  text-align: center;
+/* Style de base */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #e8f0ff;
+    overflow-x: hidden;
 }
 
-/* Vidéo de fond pour la bannière */
-.banner {
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-.banner video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-.banner h1, .banner p {
-  position: relative;
-  z-index: 1;
-}
-.banner h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
-.banner p {
-  font-size: 1.2em;
+/* Section de bienvenue */
+.welcome-section {
+    position: relative;
+    text-align: center;
+    padding: 100px 20px;
+    color: #fff;
 }
 
-/* Style du menu et du bouton */
-.menu-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  font-size: 1.5em;
-  background: none;
-  border: none;
-  color: #333;
-  cursor: pointer;
-  z-index: 1000;
+.welcome-section video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.8;
 }
+
+.welcome-text {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Style du menu */
+.menu-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 100;
+}
+
 .menu {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 200px;
-  height: 100vh;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-  padding-top: 60px;
-  text-align: left;
-  z-index: 1000;
-}
-.menu.show {
-  display: block;
-}
-.menu ul {
-  list-style: none;
-  padding: 0;
-}
-.menu ul li {
-  padding: 15px 20px;
-}
-.menu ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding-top: 50px;
+    transition: right 0.3s;
+    text-align: left;
 }
 
-/* Cacher toutes les sections de contenu */
-.content section {
-  display: none;
-  padding: 20px;
-  margin-top: 20px;
+.menu a {
+    color: #fff;
+    padding: 15px 20px;
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
 }
 
-/* Section visible */
-.content section.show {
-  display: block;
+.menu a:hover {
+    background-color: #444;
+}
+
+/* Section des réseaux sociaux */
+.social-icons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #333;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+}
+
+/* Animation responsive */
+@media (max-width: 768px) {
+    .welcome-text {
+        font-size: 1.8em;
+    }
 }
