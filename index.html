@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHAM-TOURISME</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to DHAM-TOURISME</h1>
+        <p>Explore Benin with unique experiences</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>Discover the rich culture, heritage, and scenic landscapes of Benin with DHAM-TOURISME.</p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-container">
+            <img src="images/photo1.jpg" alt="Photo 1">
+            <img src="images/photo2.jpg" alt="Photo 2">
+            <img src="images/photo3.jpg" alt="Photo 3">
+        </div>
+    </section>
+
+    <!-- Contact Section with Social Media Links -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <p>Stay connected with us on social media</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/tonprofil/" target="_blank"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://www.facebook.com/tonprofil/" target="_blank"><img src="images/facebook-icon.png" alt="Facebook"></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 DHAM-TOURISME. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Slideshow -->
+    <script>
+        let slideIndex = 0;
+        function showSlides() {
+            const slides = document.querySelectorAll(".gallery-container img");
+            slides.forEach((slide, index) => {
+                slide.style.display = (index === slideIndex) ? "block" : "none";
+            });
+            slideIndex = (slideIndex + 1) % slides.length;
+            setTimeout(showSlides, 2000);
+        }
+        document.addEventListener("DOMContentLoaded", showSlides);
+    </script>
+</body>
+</html>
