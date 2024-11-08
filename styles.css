@@ -179,16 +179,3 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-/* Pour la barre de recherche à droite */
-#search-bar {
-    position: absolute;
-    top: 20px;
-    right: 20px; /* Ajuste la position à droite */
-}
-
-/* Pour le logo à gauche */
-#logo {
-    position: absolute;
-    top: 20px;
-    left: 20px; /* Ajuste la position à gauche */
-}
