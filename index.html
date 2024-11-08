@@ -1,210 +1,228 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DHAM-TOURISME</title>
-    <link rel="stylesheet" href="style.css">
-  <style>
-    /* Styles de base pour la page */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #e8f5ff;
-      color: #333;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHAM-TOURISME</title>
+    <style>
+        /* Styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    /* Vidéo de fond pour la bannière */
-    .banner {
-      position: relative;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
-    .banner video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .banner h1, .banner p {
-      position: relative;
-      z-index: 1;
-    }
-    .banner h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    .banner p {
-      font-size: 1.2em;
-    }
+        body {
+            overflow-x: hidden;
+            background-color: #f0f8ff;
+            color: #333;
+        }
 
-    /* Style du menu et du bouton */
-    .menu-button {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 1.5em;
-      background: none;
-      border: none;
-      color: #333;
-      cursor: pointer;
-      z-index: 1000;
-    }
-    .menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      background-color: rgba(255, 255, 255, 0.9);
-      width: 200px;
-      height: 100vh;
-      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-      padding-top: 60px;
-      text-align: left;
-      z-index: 1000;
-    }
-    .menu.show {
-      display: block;
-    }
-    .menu ul {
-      list-style: none;
-      padding: 0;
-    }
-    .menu ul li {
-      padding: 15px 20px;
-    }
-    .menu ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
+        /* Style du menu */
+        #menu-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 10;
+        }
 
-    /* Cacher toutes les sections de contenu */
-    .content section {
-      display: none;
-      padding: 20px;
-      margin-top: 20px;
-    }
+        #menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 250px;
+            height: 100%;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            padding-top: 60px;
+            z-index: 9;
+        }
 
-    /* Section visible */
-    .content section.show {
-      display: block;
-    }
+        #menu a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1em;
+        }
 
-    /* Style pour la galerie d'activités */
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 20px;
-    }
-    .gallery img {
-      width: 200px;
-      height: auto;
-      border-radius: 5px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-  </style>
+        #menu a:hover {
+            background-color: #ddd;
+        }
+
+        /* Style de la bannière vidéo */
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('video-background.jpg') no-repeat center center/cover;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        .banner p {
+            font-size: 1.2em;
+        }
+
+        /* Transition de défilement */
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1.5em;
+            color: #fff;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Styles des sections */
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* Style des activités */
+        .activities {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .activity {
+            width: 200px;
+            margin: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .activity img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .activity a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Liens vers les réseaux sociaux */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            font-size: 1.5em;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-  <!-- Bouton du menu -->
-  <button class="menu-button" onclick="toggleMenu()">☰</button>
+    <!-- Bouton de menu -->
+    <div id="menu-toggle">☰</div>
+    <nav id="menu">
+        <a href="#home">Accueil</a>
+        <a href="#about">Qui sommes-nous ?</a>
+        <a href="#activities">Nos Activités</a>
+        <a href="#gallery">Galerie</a>
+        <a href="#promotions">Offres Promos</a>
+        <a href="#visa">Visa</a>
+        <a href="#contact">Contactez-nous</a>
+        <a href="#login">Se Connecter</a>
+    </nav>
 
-  <!-- Menu latéral -->
-  <nav class="menu">
-    <ul>
-      <li><a href="#accueil" onclick="showSection('accueil')">ACCUEIL</a></li>
-      <li><a href="#qui-sommes-nous" onclick="showSection('qui-sommes-nous')">QUI SOMMES NOUS ?</a></li>
-      <li><a href="#activites" onclick="showSection('activites')">NOS ACTIVITÉS</a></li>
-      <li><a href="#galerie" onclick="showSection('galerie')">GALERIE</a></li>
-      <li><a href="#offres-promos" onclick="showSection('offres-promos')">OFFRES PROMOS</a></li>
-      <li><a href="#visa" onclick="showSection('visa')">VISA</a></li>
-      <li><a href="#contact" onclick="showSection('contact')">CONTACTEZ-NOUS</a></li>
-      <li><a href="#se-connecter" onclick="showSection('se-connecter')">SE CONNECTER</a></li>
-    </ul>
-  </nav>
+    <!-- Bannière avec vidéo de fond -->
+    <header class="banner">
+        <h1>Bienvenue chez DHAM-TOURISME</h1>
+        <p>Agence de Tourisme Spécialisée</p>
+        <div class="scroll-down">▼</div>
+    </header>
 
-  <!-- Bannière d'accueil avec vidéo de fond -->
-  <div class="banner">
-    <video autoplay loop muted playsinline>
-      <source src="ton-fichier-video.mp4" type="video/mp4">
-      Votre navigateur ne supporte pas les vidéos HTML5.
-    </video>
-    <h1>Bienvenue chez DHAM-TOURISME</h1>
-    <p>Explorez le Bénin avec des expériences uniques</p>
-  </div>
+    <!-- Sections du site -->
+    <section id="home" class="section">
+        <h2>Découvrez nos activités</h2>
+        <p>DHAM-TOURISME est une agence de tourisme spécialisée dans la planification de vos vacances en famille, entre amis ou en groupe dans les plus beaux endroits que le Bénin a à offrir.</p>
+    </section>
 
-  <!-- Contenu principal -->
-  <div class="content">
-    <section id="accueil" class="show">
-      <h2>Accueil</h2>
-      <p>Bienvenue chez DHAM-TOURISME ! Nous sommes ravis de vous faire découvrir le Bénin sous un angle unique. Nos services sont conçus pour vous offrir des expériences mémorables et immersives.</p>
+    <section id="activities" class="section">
+        <h2>Nos Activités</h2>
+        <div class="activities">
+            <div class="activity">
+                <img src="cotonou.jpg" alt="Activités à Cotonou">
+                <h3>Activités dans Cotonou</h3>
+                <a href="#">TOUT VOIR</a>
+            </div>
+            <div class="activity">
+                <img src="restaurant.jpg" alt="Restaurants">
+                <h3>Restaurant</h3>
+                <a href="#">TOUT VOIR</a>
+            </div>
+            <div class="activity">
+                <img src="tours.jpg" alt="Tours et Visites">
+                <h3>Tours et Visites Bénin</h3>
+                <a href="#">TOUT VOIR</a>
+            </div>
+            <div class="activity">
+                <img src="park.jpg" alt="Parcs Animaliers">
+                <h3>Parcs Animaliers</h3>
+                <a href="#">TOUT VOIR</a>
+            </div>
+        </div>
     </section>
-    <section id="qui-sommes-nous">
-      <h2>Qui sommes-nous ?</h2>
-      <p>DHAM-TOURISME est une agence dédiée à la promotion des richesses culturelles et naturelles du Bénin. Notre mission est de créer des liens entre les voyageurs et les communautés locales, tout en valorisant notre patrimoine.</p>
-    </section>
-    <section id="activites">
-      <h2>Nos Activités</h2>
-      <p>Nous proposons diverses activités : visites culturelles, circuits nature, excursions en bord de mer et bien plus encore.</p>
-      <!-- Galerie d'images ou vidéos pour illustrer les activités -->
-      <div class="gallery">
-        <img src="https://source.unsplash.com/200x200/?culture" alt="Culture">
-        <img src="https://source.unsplash.com/200x200/?nature" alt="Nature">
-        <img src="https://source.unsplash.com/200x200/?sea" alt="Mer">
-      </div>
-    </section>
-    <section id="galerie">
-      <h2>Galerie</h2>
-      <p>Découvrez les moments forts de nos voyages à travers notre galerie photo. Chaque image raconte une histoire, un souvenir inoubliable de nos expéditions au Bénin.</p>
-    </section>
-    <section id="offres-promos">
-      <h2>Offres Promos</h2>
-      <p>Profitez de nos offres spéciales pour explorer le Bénin à des tarifs avantageux. Nos promotions sont disponibles pour une durée limitée, alors ne tardez pas !</p>
-    </section>
-    <section id="visa">
-      <h2>Visa</h2>
-      <p>Vous planifiez une visite au Bénin ? Nous vous aidons dans les démarches pour l'obtention de votre visa. Contactez-nous pour plus de détails sur les formalités d'entrée.</p>
-    </section>
-    <section id="contact">
-      <h2>Contactez-nous</h2>
-      <p>Pour toute question ou demande d'information, n'hésitez pas à nous contacter. Nous sommes disponibles pour vous aider à préparer votre voyage.</p>
-    </section>
-    <section id="se-connecter">
-      <h2>Se Connecter</h2>
-      <p>Accédez à votre espace personnel pour gérer vos réservations et explorer davantage d'options. Connectez-vous pour bénéficier de services personnalisés.</p>
-    </section>
-  </div>
 
-  <!-- Script JavaScript pour le menu et pour afficher les sections -->
-  <script>
-    function toggleMenu() {
-      document.querySelector(".menu").classList.toggle("show");
-    }
+    <section id="contact" class="section">
+        <h2>Contactez-nous</h2>
+        <p>Nous sommes disponibles par téléphone au +229 66953934.</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank">Facebook</a>
+        </div>
+    </section>
 
-    function showSection(id) {
-      // Masquer toutes les sections
-      document.querySelectorAll(".content section").forEach(section => section.classList.remove("show"));
-      // Afficher la section sélectionnée
-      document.getElementById(id).classList.add("show");
-      // Fermer le menu après sélection
-      toggleMenu();
-    }
-  </script>
+    <script>
+        // Menu toggle
+        const menuToggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("menu");
+
+        menuToggle.addEventListener("click", () => {
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        });
+
+        menu.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                menu.style.display = "none";
+            });
+        });
+    </script>
 </body>
 </html>
