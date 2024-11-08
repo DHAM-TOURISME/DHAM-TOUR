@@ -1,4 +1,4 @@
-/* Styles globaux */
+/* Styles de base */
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +17,6 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 1.5em;
     cursor: pointer;
     z-index: 10;
 }
@@ -47,7 +46,7 @@ body {
     background-color: #ddd;
 }
 
-/* Style de la bannière vidéo */
+/* Bannière */
 .banner {
     position: relative;
     width: 100%;
@@ -58,18 +57,36 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
 }
 
 .banner h1 {
-    font-size: 3em;
+    font-size: 1.5em;
+    font-weight: normal;
     margin-bottom: 0.5em;
 }
 
-.banner p {
-    font-size: 1.2em;
+.banner h2 {
+    font-size: 2.5em;
+    font-weight: bold;
 }
 
-/* Animation de défilement */
+.banner .discover-link {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.banner .discover-link:hover {
+    background-color: #0056b3;
+}
+
 .scroll-down {
     position: absolute;
     bottom: 20px;
@@ -79,16 +96,7 @@ body {
     animation: bounce 2s infinite;
 }
 
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Styles des sections */
+/* Sections */
 .section {
     padding: 80px 20px;
     text-align: center;
@@ -99,7 +107,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Style des activités */
+/* Activités */
 .activities {
     display: flex;
     flex-wrap: wrap;
@@ -110,48 +118,4 @@ body {
     width: 200px;
     margin: 15px;
     padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.activity:hover {
-    transform: scale(1.05);
-}
-
-.activity img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.activity a {
-    display: inline-block;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.activity a:hover {
-    text-decoration: underline;
-}
-
-/* Liens vers les réseaux sociaux */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-links a {
-    font-size: 1.5em;
-    color: #333;
-    text-decoration: none;
-}
-
-.social-links a:hover {
-    color: #007bff;
-}
+    border: 1px solid #
