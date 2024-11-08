@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHAM-TOURISME</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Bouton de menu -->
-    <div id="menu-toggle" class="menu-toggle">☰</div>
-    <nav id="menu" class="menu">
+    <!-- Menu -->
+    <div id="menu-toggle">☰</div>
+    <nav id="menu">
         <div class="menu-header">
-            <h2>DHAM-TOURISME</h2>
+            <span id="close-menu">×</span>
         </div>
         <a href="#home">Accueil</a>
         <a href="#about">Qui sommes-nous ?</a>
@@ -21,14 +21,15 @@
         <a href="#visa">Visa</a>
         <a href="#contact">Contactez-nous</a>
         <a href="#login">Se Connecter</a>
-
-        <!-- Ajout de la fonctionnalité de langue -->
-        <div class="language">
-            <a href="#">Français</a> | <a href="#">English</a>
+        <div class="language-switch">
+            <select id="language" onchange="switchLanguage(event)">
+                <option value="fr">Français</option>
+                <option value="en">English</option>
+            </select>
         </div>
-
-        <!-- Barre de recherche -->
-        <input type="text" class="search-bar" placeholder="Rechercher...">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Rechercher...">
+        </div>
     </nav>
 
     <!-- Bannière avec vidéo de fond -->
@@ -41,8 +42,8 @@
 
     <!-- Sections du site -->
     <section id="home" class="section">
-        <h2>Découvrez nos activités</h2>
-        <p>DHAM-TOURISME est une agence de tourisme spécialisée dans la planification de vos vacances en famille, entre amis ou en groupe dans les plus beaux endroits que le Bénin a à offrir.</p>
+        <h2>Bienvenue chez DHAM-TOURISME</h2>
+        <p>Nous offrons une expérience unique de découverte du Bénin avec une variété d'activités adaptées à tous les types de voyageurs.</p>
     </section>
 
     <section id="activities" class="section">
@@ -50,12 +51,12 @@
         <div class="activities">
             <div class="activity">
                 <img src="cotonou.jpg" alt="Activités à Cotonou">
-                <h3>Activités dans Cotonou</h3>
+                <h3>Activités à Cotonou</h3>
                 <a href="#">TOUT VOIR</a>
             </div>
             <div class="activity">
                 <img src="restaurant.jpg" alt="Restaurants">
-                <h3>Restaurant</h3>
+                <h3>Restaurants</h3>
                 <a href="#">TOUT VOIR</a>
             </div>
             <div class="activity">
@@ -75,25 +76,34 @@
         <h2>Contactez-nous</h2>
         <p>Nous sommes disponibles par téléphone au +229 66953934.</p>
         <div class="social-links">
-            <a href="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" target="_blank">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/dham_tourisme" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/dham_tourisme" target="_blank">Facebook</a>
         </div>
     </section>
 
     <script>
-        // Menu toggle
+        // Menu Toggle
         const menuToggle = document.getElementById("menu-toggle");
         const menu = document.getElementById("menu");
+        const closeMenu = document.getElementById("close-menu");
 
         menuToggle.addEventListener("click", () => {
-            menu.classList.toggle("active");
+            menu.style.display = "block";
         });
 
-        menu.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                menu.classList.remove("active");
-            });
+        closeMenu.addEventListener("click", () => {
+            menu.style.display = "none";
         });
+
+        // Switch Language Function
+        function switchLanguage(event) {
+            const language = event.target.value;
+            if (language === 'en') {
+                alert("Switching to English");  // Implement actual language change logic here
+            } else {
+                alert("Passage en Français");  // Implement actual language change logic here
+            }
+        }
     </script>
 </body>
 </html>
