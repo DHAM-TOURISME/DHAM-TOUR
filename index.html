@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHAM-TOURISME</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         /* Styles de base */
         * {
@@ -69,18 +69,14 @@
         }
 
         .banner h1 {
-            font-size: 4em;
+            font-size: 2em;
             font-weight: normal;
             margin-bottom: 0.5em;
-            opacity: 0.6;
-            transform: translateY(10px);
         }
 
         .banner h2 {
-            font-size: 3.5em;
+            font-size: 3em;
             font-weight: bold;
-            letter-spacing: 10px;
-            margin-top: 10px;
         }
 
         .banner .discover-link {
@@ -170,12 +166,23 @@
             color: #333;
         }
 
-        /* Ajout du texte personnalisé */
-        .custom-text {
-            margin-top: 40px;
-            font-size: 1.1em;
-            line-height: 1.6;
+        /* Footer */
+        footer {
+            background-color: #f0f8ff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 1em;
             color: #333;
+        }
+
+        .social-links img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
         }
     </style>
 </head>
@@ -233,18 +240,23 @@
         </div>
     </section>
 
-    <section class="custom-text">
-        <p>Un groupe au delà de vos attentes. Envie de visiter le Bénin ? Des clients en voyages d’affaires : envie de les surprendre ? Récompenser vos collaborateurs ? De la famille en visite ? Nous proposons des appartements de vacances, des hôtels et toutes sortes de tours et excursions pour découvrir cette ville magique. DHAM-TOURISME répond à toutes vos demandes.</p>
-    </section>
-
     <section id="contact" class="section">
         <h2>Contactez-nous</h2>
         <p>Nous sommes disponibles par téléphone au +229 66953934.</p>
         <div class="social-links">
-            <a href="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" target="_blank">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" target="_blank">
+                <img src="instagram-icon.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank">
+                <img src="facebook-icon.png" alt="Facebook">
+            </a>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 DHAM-TOURISME - Tout droit réservé</p>
+    </footer>
 
     <script>
         // Menu toggle
@@ -259,6 +271,13 @@
             link.addEventListener("click", () => {
                 menu.style.display = "none";
             });
+        });
+
+        // Close the menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+                menu.style.display = "none";
+            }
         });
     </script>
 </body>
