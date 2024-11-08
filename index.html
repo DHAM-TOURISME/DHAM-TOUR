@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHAM-TOURISME</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Styles de base */
         * {
@@ -65,15 +64,34 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            flex-direction: column;
         }
 
         .banner h1 {
-            font-size: 3em;
+            font-size: 2em;
+            font-weight: normal;
             margin-bottom: 0.5em;
         }
 
-        .banner p {
-            font-size: 1.2em;
+        .banner h2 {
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        .banner .discover-link {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1.1em;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .banner .discover-link:hover {
+            background-color: #0056b3;
         }
 
         /* Transition de défilement */
@@ -164,8 +182,9 @@
 
     <!-- Bannière avec vidéo de fond -->
     <header class="banner">
-        <h1>Bienvenue chez DHAM-TOURISME</h1>
-        <p>Agence de Tourisme Spécialisée</p>
+        <h1>DHAM-TOURISME</h1>
+        <h2>AGENCE DE TOURISME SPÉCIALISÉE</h2>
+        <a href="#activities" class="discover-link">DÉCOUVRIR NOS ACTIVITÉS</a>
         <div class="scroll-down">▼</div>
     </header>
 
