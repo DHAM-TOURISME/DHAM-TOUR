@@ -8,23 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Sélecteur de langue -->
-    <div class="language-selector">
-        <button onclick="changeLanguage('fr')">FR</button> | 
-        <button onclick="changeLanguage('en')">EN</button>
-    </div>
-
     <!-- Bouton de menu -->
     <div id="menu-toggle">☰</div>
     <nav id="menu">
-        <a href="#home">Accueil</a>
-        <a href="#about">Qui sommes-nous ?</a>
-        <a href="#activities">Nos Activités</a>
-        <a href="#gallery">Galerie</a>
-        <a href="#promotions">Offres Promos</a>
-        <a href="#visa">Visa</a>
-        <a href="#contact">Contactez-nous</a>
-        <a href="#login">Se Connecter</a>
+        <!-- Sélecteur de langue dans le menu -->
+        <div class="language-selector">
+            <button onclick="changeLanguage('fr')">FR</button> | 
+            <button onclick="changeLanguage('en')">EN</button>
+        </div>
+        
+        <!-- Lien vers les sections -->
+        <a href="#home" onclick="showSection('home')">Accueil</a>
+        <a href="#about" onclick="showSection('about')">Qui sommes-nous ?</a>
+        <a href="#activities" onclick="showSection('activities')">Nos Activités</a>
+        <a href="#gallery" onclick="showSection('gallery')">Galerie</a>
+        <a href="#promotions" onclick="showSection('promotions')">Offres Promos</a>
+        <a href="#visa" onclick="showSection('visa')">Visa</a>
+        <a href="#contact" onclick="showSection('contact')">Contactez-nous</a>
+        <a href="#login" onclick="showSection('login')">Se Connecter</a>
+
         <!-- Barre de recherche -->
         <div class="search-bar">
             <input type="text" placeholder="Rechercher...">
@@ -36,47 +38,47 @@
     <header class="banner">
         <h1>DHAM-TOURISME</h1>
         <h2>AGENCE DE TOURISME SPÉCIALISÉE</h2>
-        <a href="#activities" class="discover-link">DÉCOUVRIR NOS ACTIVITÉS</a>
+        <a href="#activities" class="discover-link" onclick="showSection('activities')">DÉCOUVRIR NOS ACTIVITÉS</a>
         <div class="scroll-down">▼</div>
     </header>
 
-    <!-- Sections du site -->
-    <section id="home" class="section">
+    <!-- Sections cachées, affichées en fonction du clic -->
+    <section id="home" class="section hidden">
         <h2>Accueil</h2>
         <p>Bienvenue chez DHAM-TOURISME, votre agence de confiance pour explorer les merveilles du Bénin.</p>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section hidden">
         <h2>Qui sommes-nous ?</h2>
-        <p>DHAM-TOURISME est une agence de voyage spécialisée dans l’organisation de séjours et d’excursions au Bénin, offrant des services sur mesure pour tous types de voyageurs.</p>
+        <p>DHAM-TOURISME est une agence de voyage spécialisée dans l’organisation de séjours et d’excursions au Bénin.</p>
     </section>
 
-    <section id="activities" class="section">
+    <section id="activities" class="section hidden">
         <h2>Nos Activités</h2>
         <p>Nous proposons diverses activités, incluant des visites de sites historiques, des parcs animaliers, des excursions et bien plus.</p>
     </section>
 
-    <section id="gallery" class="section">
+    <section id="gallery" class="section hidden">
         <h2>Galerie</h2>
         <p>Découvrez nos meilleures photos de voyages et activités au Bénin.</p>
     </section>
 
-    <section id="promotions" class="section">
+    <section id="promotions" class="section hidden">
         <h2>Offres Promos</h2>
         <p>Profitez de nos offres spéciales et réductions pour des séjours inoubliables.</p>
     </section>
 
-    <section id="visa" class="section">
+    <section id="visa" class="section hidden">
         <h2>Visa</h2>
         <p>Nous vous aidons dans le processus de demande de visa pour faciliter votre voyage vers le Bénin.</p>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section hidden">
         <h2>Contactez-nous</h2>
         <p>Pour toute question, veuillez nous contacter au +229 66953934 ou par email à info@dham-tourisme.bj.</p>
     </section>
 
-    <section id="login" class="section">
+    <section id="login" class="section hidden">
         <h2>Se Connecter</h2>
         <p>Connectez-vous pour accéder à votre compte et gérer vos réservations.</p>
     </section>
@@ -88,17 +90,22 @@
             <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://www.tiktok.com/@dham.tourisme?_t=8rDqwFndFxY&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
-        <div class="footer-logo">
-            <img src="dham-logo.png" alt="Logo DHAM-TOURISME">
-        </div>
         <p>&copy; 2023 DHAM-TOURISME. Tous droits réservés.</p>
     </footer>
 
     <script>
-        // Fonction de changement de langue (simulée ici, peut être améliorée)
+        // Fonction pour afficher uniquement la section sélectionnée
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Fonction de changement de langue
         function changeLanguage(lang) {
             alert("Changement de langue vers " + (lang === "fr" ? "Français" : "Anglais"));
-            // Vous pouvez ajouter un code pour charger le contenu dans la langue sélectionnée
+            // Ici, ajouter la logique pour charger le contenu dans la langue sélectionnée
         }
 
         // Menu toggle
