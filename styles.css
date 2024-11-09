@@ -201,3 +201,58 @@ body {
         font-size: 1.8em;
     }
 }
+/* Styles pour le menu latéral */
+#menu {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: -250px;
+    background-color: #333;
+    color: #fff;
+    padding-top: 60px;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#menu.open {
+    right: 0;
+}
+
+/* Bouton de menu */
+#menu-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Changement de langue */
+#language-selector img {
+    width: 30px;
+    height: 20px;
+    margin: 10px;
+}
+
+/* Réseaux sociaux */
+.social-icon i {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #4267B2; /* Default color for Facebook */
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover i {
+    color: #E1306C; /* Color on hover for Instagram */
+}
+
+/* Pied de page */
+footer p {
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    color: #333;
+}
