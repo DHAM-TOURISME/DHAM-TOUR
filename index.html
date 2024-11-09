@@ -19,10 +19,11 @@
         <a href="#visa">Visa</a>
         <a href="#contact">Contactez-nous</a>
         <a href="#login">Se Connecter</a>
-        <a href="#" onclick="toggleLanguage()">Changer de Langue (FR/EN)</a>
-        <div class="search-bar">
-            <input type="text" placeholder="Rechercher...">
-            <i class="fas fa-search"></i>
+        
+        <!-- Section de changement de langue avec drapeaux -->
+        <div id="language-selector">
+            <img src="flag-fr.png" alt="Français" title="Français">
+            <img src="flag-us.png" alt="Anglais" title="Anglais">
         </div>
     </nav>
 
@@ -66,22 +67,26 @@
         </div>
     </section>
 
+    <!-- Nouveau texte ajouté juste avant la section Contactez-nous -->
+    <section id="additional-info" class="section">
+        <p>Un groupe au-delà de vos attentes.
+        Envie de visiter le Bénin ? Des clients en voyage d’affaires ? Envie de les surprendre ? Récompenser vos collaborateurs ? De la famille en visite ?
+        Nous proposons des appartements de vacances, des hôtels et toutes sortes de tours et excursions pour découvrir cette ville magique.
+        DHAM-TOURISME répond à toutes vos demandes.</p>
+    </section>
+
     <section id="contact" class="section">
         <h2>Contactez-nous</h2>
         <p>Nous sommes disponibles par téléphone au +229 66953934.</p>
         <div class="social-links">
-            <a href="https://www.instagram.com/dham_tourisme" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/dham.tourisme" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.tiktok.com/@dham.tourisme" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.tiktok.com/@dham.tourisme?_t=8rDqwFndFxY&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
     </section>
 
-    <footer class="section">
-        <p>Un groupe au-delà de vos attentes.</p>
-        <p>Envie de visiter le Bénin ? Des clients en voyage d’affaires ? Envie de les surprendre ? Récompenser vos collaborateurs ? De la famille en visite ?</p>
-        <p>Nous proposons des appartements de vacances, des hôtels et toutes sortes de tours et excursions pour découvrir cette ville magique.</p>
-        <p>DHAM-TOURISME répond à toutes vos demandes.</p>
-        <p>&copy; DHAM-TOURISME - Tous droits réservés</p>
+    <footer>
+        <p>&copy; 2024 DHAM-TOURISME. Tous droits réservés.</p>
     </footer>
 
     <script>
@@ -90,19 +95,14 @@
         const menu = document.getElementById("menu");
 
         menuToggle.addEventListener("click", () => {
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
+            menu.classList.toggle("open");
         });
 
         menu.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
-                menu.style.display = "none";
+                menu.classList.remove("open");
             });
         });
-
-        // Fonction pour changer de langue
-        function toggleLanguage() {
-            alert("Fonction de changement de langue en cours de développement.");
-        }
     </script>
 </body>
 </html>
