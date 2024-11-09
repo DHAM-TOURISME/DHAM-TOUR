@@ -90,7 +90,7 @@
     </footer>
 
     <script>
-        // Menu toggle
+        // Script de basculement de menu
         const menuToggle = document.getElementById("menu-toggle");
         const menu = document.getElementById("menu");
 
@@ -98,6 +98,7 @@
             menu.classList.toggle("open");
         });
 
+        // Fermer le menu après un clic sur un lien
         menu.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 menu.classList.remove("open");
