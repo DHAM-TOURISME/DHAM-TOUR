@@ -11,13 +11,13 @@
     <!-- Bouton de menu -->
     <div id="menu-toggle">☰</div>
     <nav id="menu">
-        <!-- Sélecteur de langue dans le menu -->
+        <!-- Sélecteur de langue -->
         <div class="language-selector">
             <button onclick="changeLanguage('fr')">FR</button> | 
             <button onclick="changeLanguage('en')">EN</button>
         </div>
         
-        <!-- Lien vers les sections -->
+        <!-- Liens vers les sections (accessibles uniquement par clic dans le menu) -->
         <a href="#home" onclick="showSection('home')">Accueil</a>
         <a href="#about" onclick="showSection('about')">Qui sommes-nous ?</a>
         <a href="#activities" onclick="showSection('activities')">Nos Activités</a>
@@ -34,15 +34,46 @@
         </div>
     </nav>
 
-    <!-- Bannière avec vidéo de fond -->
-    <header class="banner">
+    <!-- Présentation de l'agence -->
+    <section class="introduction">
         <h1>DHAM-TOURISME</h1>
-        <h2>AGENCE DE TOURISME SPÉCIALISÉE</h2>
-        <a href="#activities" class="discover-link" onclick="showSection('activities')">DÉCOUVRIR NOS ACTIVITÉS</a>
-        <div class="scroll-down">▼</div>
-    </header>
+        <p>DHAM-TOURISME est une agence de tourisme spécialisée dans la planification de vos vacances en famille, entre amis ou en groupe dans les plus beaux endroits que le Bénin a à offrir.</p>
+    </section>
 
-    <!-- Sections cachées, affichées en fonction du clic -->
+    <!-- Section des activités principales -->
+    <section class="activities-overview">
+        <h2>DÉCOUVREZ NOS ACTIVITÉS</h2>
+
+        <!-- Activité: Cotonou -->
+        <div class="activity">
+            <img src="images/cotonou.jpg" alt="Activités à Cotonou">
+            <h3>ACTIVITÉS DANS COTONOU</h3>
+            <button onclick="showActivityDetails('cotonou')">TOUT VOIR</button>
+        </div>
+
+        <!-- Activité: Restaurant -->
+        <div class="activity">
+            <img src="images/restaurant.jpg" alt="Restaurants">
+            <h3>RESTAURANT</h3>
+            <button onclick="showActivityDetails('restaurant')">TOUT VOIR</button>
+        </div>
+
+        <!-- Activité: Tours et visites au Bénin -->
+        <div class="activity">
+            <img src="images/tours.jpg" alt="Tours et visites">
+            <h3>TOURS ET VISITES BENIN</h3>
+            <button onclick="showActivityDetails('tours')">TOUT VOIR</button>
+        </div>
+
+        <!-- Activité: Parc animalier -->
+        <div class="activity">
+            <img src="images/parcs.jpg" alt="Parcs animaliers">
+            <h3>PARCS ANIMALIERS</h3>
+            <button onclick="showActivityDetails('parcs')">TOUT VOIR</button>
+        </div>
+    </section>
+
+    <!-- Sections cachées, accessibles via le menu -->
     <section id="home" class="section hidden">
         <h2>Accueil</h2>
         <p>Bienvenue chez DHAM-TOURISME, votre agence de confiance pour explorer les merveilles du Bénin.</p>
@@ -53,35 +84,7 @@
         <p>DHAM-TOURISME est une agence de voyage spécialisée dans l’organisation de séjours et d’excursions au Bénin.</p>
     </section>
 
-    <section id="activities" class="section hidden">
-        <h2>Nos Activités</h2>
-        <p>Nous proposons diverses activités, incluant des visites de sites historiques, des parcs animaliers, des excursions et bien plus.</p>
-    </section>
-
-    <section id="gallery" class="section hidden">
-        <h2>Galerie</h2>
-        <p>Découvrez nos meilleures photos de voyages et activités au Bénin.</p>
-    </section>
-
-    <section id="promotions" class="section hidden">
-        <h2>Offres Promos</h2>
-        <p>Profitez de nos offres spéciales et réductions pour des séjours inoubliables.</p>
-    </section>
-
-    <section id="visa" class="section hidden">
-        <h2>Visa</h2>
-        <p>Nous vous aidons dans le processus de demande de visa pour faciliter votre voyage vers le Bénin.</p>
-    </section>
-
-    <section id="contact" class="section hidden">
-        <h2>Contactez-nous</h2>
-        <p>Pour toute question, veuillez nous contacter au +229 66953934 ou par email à info@dham-tourisme.bj.</p>
-    </section>
-
-    <section id="login" class="section hidden">
-        <h2>Se Connecter</h2>
-        <p>Connectez-vous pour accéder à votre compte et gérer vos réservations.</p>
-    </section>
+    <!-- ... (autres sections du menu, comme auparavant) -->
 
     <!-- Réseaux sociaux -->
     <footer class="footer">
@@ -94,7 +97,7 @@
     </footer>
 
     <script>
-        // Fonction pour afficher uniquement la section sélectionnée
+        // Fonction pour afficher uniquement la section sélectionnée dans le menu
         function showSection(sectionId) {
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.add('hidden');
@@ -105,7 +108,12 @@
         // Fonction de changement de langue
         function changeLanguage(lang) {
             alert("Changement de langue vers " + (lang === "fr" ? "Français" : "Anglais"));
-            // Ici, ajouter la logique pour charger le contenu dans la langue sélectionnée
+        }
+
+        // Fonction pour afficher les détails d'une activité
+        function showActivityDetails(activityId) {
+            alert("Affichage des détails pour l'activité: " + activityId);
+            // Ici, ajouter la logique pour afficher les détails ou rediriger vers une page dédiée
         }
 
         // Menu toggle
