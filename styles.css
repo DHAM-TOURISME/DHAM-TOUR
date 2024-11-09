@@ -11,6 +11,9 @@ body {
     background-color: #f0f8ff;
     color: #333;
 }
+body {
+    padding-top: 60px; /* Ajuste cette valeur en fonction de la hauteur du menu */
+}
 
 /* Style du menu */
 #menu-toggle {
@@ -242,3 +245,22 @@ body {
 #menu a:hover {
     background-color: #ddd;
 }
+#menu {
+    position: fixed; /* Rend le menu fixe */
+    top: 0;
+    width: 100%; /* Assure qu'il prenne toute la largeur */
+    z-index: 9;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+    <p>DHAM-TOURISME<br>
+    Numéro de licence : DED 930141<br>
+    France - Bénin<br>
+    Disponible par téléphone au +229 66953934<br>
+    © 2024 DHAM-TOURISME. Tous droits réservés.</p>
+</footer>
