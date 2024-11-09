@@ -19,6 +19,8 @@ body {
     right: 20px;
     cursor: pointer;
     z-index: 10;
+    font-size: 1.5em;
+    color: #333;
 }
 
 #menu {
@@ -176,14 +178,16 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+    /* Ajuster la bannière pour les petits écrans */
     .banner h1 {
         font-size: 1.5em;
     }
 
     .banner h2 {
-        font-size: 2.5em;
+        font-size: 2em;
     }
 
+    /* Redimensionner les cartes d'activité */
     .activity {
         width: 90%;
         margin: 10px 0;
@@ -191,5 +195,9 @@ body {
 
     #menu {
         width: 100%;
+    }
+    
+    #menu-toggle {
+        font-size: 1.8em;
     }
 }
