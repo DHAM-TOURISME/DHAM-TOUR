@@ -10,7 +10,7 @@ body {
     overflow-x: hidden;
     background-color: #f0f8ff;
     color: #333;
-    padding-top: 60px; /* Ajuste la hauteur pour éviter le chevauchement avec le menu */
+    padding-top: 60px; /* Ajuste cette valeur en fonction de la hauteur du menu */
 }
 
 /* Style du menu */
@@ -30,7 +30,7 @@ body {
     top: 0;
     right: 0;
     background-color: rgba(255, 255, 255, 0.9);
-    width: 250px; /* Limité à une partie de l'écran */
+    width: 250px;
     height: 100%;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     padding-top: 60px;
@@ -44,7 +44,6 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Liens du menu */
 #menu a {
     display: block;
     padding: 15px 20px;
@@ -58,7 +57,7 @@ body {
     background-color: #f0f8ff;
 }
 
-/* Bannière */
+/* Style de la bannière vidéo */
 .banner {
     position: relative;
     width: 100%;
@@ -99,6 +98,7 @@ body {
     background-color: #0056b3;
 }
 
+/* Transition de défilement */
 .scroll-down {
     position: absolute;
     bottom: 20px;
@@ -117,7 +117,7 @@ body {
     }
 }
 
-/* Sections */
+/* Styles des sections */
 .section {
     padding: 80px 20px;
     text-align: center;
@@ -128,7 +128,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Activités */
+/* Style des activités */
 .activities {
     display: flex;
     flex-wrap: wrap;
@@ -161,7 +161,7 @@ body {
     text-decoration: underline;
 }
 
-/* Liens réseaux sociaux */
+/* Liens vers les réseaux sociaux */
 .social-links {
     display: flex;
     justify-content: center;
@@ -184,27 +184,6 @@ body {
     color: #007bff;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    /* Bannière ajustée */
-    .banner h1 {
-        font-size: 1.5em;
-    }
-
-    .banner h2 {
-        font-size: 2em;
-    }
-
-    .activity {
-        width: 90%;
-        margin: 10px 0;
-    }
-
-    #menu {
-        width: 80%; /* Menu plus petit pour les petits écrans */
-    }
-}
-
 /* Pied de page */
 footer {
     text-align: center;
@@ -215,4 +194,26 @@ footer {
 
 footer p {
     margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* Ajuster la bannière pour les petits écrans */
+    .banner h1 {
+        font-size: 1.5em;
+    }
+
+    .banner h2 {
+        font-size: 2em;
+    }
+
+    /* Redimensionner les cartes d'activité */
+    .activity {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    #menu {
+        width: 80%; /* Menu plus étroit sur petits écrans */
+    }
 }
