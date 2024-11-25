@@ -10,48 +10,55 @@ body {
     overflow-x: hidden;
     background-color: #f0f8ff;
     color: #333;
-}
-body {
-    padding-top: 60px; /* Ajuste cette valeur en fonction de la hauteur du menu */
+    padding-top: 60px; /* Ajuste la hauteur pour éviter le chevauchement avec le menu */
 }
 
 /* Style du menu */
 #menu-toggle {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     cursor: pointer;
     z-index: 10;
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: #333;
 }
 
 #menu {
-    display: none;
+    display: none; /* Masqué par défaut */
     position: fixed;
     top: 0;
     right: 0;
     background-color: rgba(255, 255, 255, 0.9);
-    width: 250px;
+    width: 250px; /* Limité à une partie de l'écran */
     height: 100%;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     padding-top: 60px;
     z-index: 9;
+    overflow-y: auto;
 }
 
+/* Affiche le menu lorsqu'il est ouvert */
+#menu.open {
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Liens du menu */
 #menu a {
     display: block;
     padding: 15px 20px;
     text-decoration: none;
     color: #333;
     font-size: 1.1em;
+    border-bottom: 1px solid #ddd;
 }
 
 #menu a:hover {
-    background-color: #ddd;
+    background-color: #f0f8ff;
 }
 
-/* Style de la bannière vidéo */
+/* Bannière */
 .banner {
     position: relative;
     width: 100%;
@@ -92,7 +99,6 @@ body {
     background-color: #0056b3;
 }
 
-/* Transition de défilement */
 .scroll-down {
     position: absolute;
     bottom: 20px;
@@ -111,7 +117,7 @@ body {
     }
 }
 
-/* Styles des sections */
+/* Sections */
 .section {
     padding: 80px 20px;
     text-align: center;
@@ -122,11 +128,12 @@ body {
     margin-bottom: 20px;
 }
 
-/* Style des activités */
+/* Activités */
 .activities {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 15px;
 }
 
 .activity {
@@ -150,7 +157,11 @@ body {
     text-decoration: none;
 }
 
-/* Liens vers les réseaux sociaux */
+.activity a:hover {
+    text-decoration: underline;
+}
+
+/* Liens réseaux sociaux */
 .social-links {
     display: flex;
     justify-content: center;
@@ -163,7 +174,6 @@ body {
     color: #333;
 }
 
-/* Icônes des réseaux sociaux */
 .social-links i {
     font-size: 1.8em;
     color: #333;
@@ -174,14 +184,9 @@ body {
     color: #007bff;
 }
 
-/* Cacher les sections de contenu par défaut */
-.hidden {
-    display: none;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
-    /* Ajuster la bannière pour les petits écrans */
+    /* Bannière ajustée */
     .banner h1 {
         font-size: 1.5em;
     }
@@ -190,67 +195,17 @@ body {
         font-size: 2em;
     }
 
-    /* Redimensionner les cartes d'activité */
     .activity {
         width: 90%;
         margin: 10px 0;
     }
 
     #menu {
-        width: 100%;
-    }
-    
-    #menu-toggle {
-        font-size: 1.8em;
+        width: 80%; /* Menu plus petit pour les petits écrans */
     }
 }
 
-/* Style du menu */
-#menu-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 1.5em;
-    color: #333;
-}
-
-#menu {
-    display: none; /* Masqué par défaut */
-    position: fixed;
-    top: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.9);
-    width: 250px;
-    height: 100%;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    padding-top: 60px;
-    z-index: 9;
-}
-
-/* Affiche le menu lorsqu'il est ouvert */
-#menu.open {
-    display: block;
-}
-
-#menu a {
-    display: block;
-    padding: 15px 20px;
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1em;
-}
-
-#menu a:hover {
-    background-color: #ddd;
-}
-#menu {
-    position: fixed; /* Rend le menu fixe */
-    top: 0;
-    width: 100%; /* Assure qu'il prenne toute la largeur */
-    z-index: 9;
-}
+/* Pied de page */
 footer {
     text-align: center;
     padding: 20px;
@@ -258,9 +213,6 @@ footer {
     color: #333;
 }
 
-    <p>DHAM-TOURISME<br>
-    Numéro de licence : DED 930141<br>
-    France - Bénin<br>
-    Disponible par téléphone au +229 66953934<br>
-    © 2024 DHAM-TOURISME. Tous droits réservés.</p>
-</footer>
+footer p {
+    margin: 5px 0;
+}
