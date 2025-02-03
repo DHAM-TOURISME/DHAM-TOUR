@@ -1,6 +1,3 @@
-Voici un code HTML/CSS de base qui intègre les éléments clés discutés (palette violette, animations, inspirations culturelles, responsive design) :
-
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -223,21 +220,7 @@ Voici un code HTML/CSS de base qui intègre les éléments clés discutés (pale
         
         // Ajouter un écouteur d'événement sur un bouton (à implémenter)
     </script>
-</body>
-</html>
-```
-
-Pour compléter ce code, vous devrez :
-
-1. **Ajouter les médias** :
-   - Remplacer `pendjari.jpg` et `ouidah.jpg` par vos propres images
-   - Créer/ajouter une vidéo d'arrière-plan pour la section héro
-   - Ajouter le PNG des constellations pour le mode nuit
-
-2. **Améliorer les fonctionnalités** :
-```javascript
-// Ajouter ce script pour les animations avancées
-document.querySelectorAll('.nav-links a').forEach(link => {
+    document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('mouseover', () => {
         link.style.transform = 'translateY(-3px)';
     });
@@ -248,35 +231,5 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
 // Activer le mode nuit
 document.querySelector('#dark-mode-toggle').addEventListener('click', toggleDarkMode);
-```
-
-3. **Optimiser pour le mobile** :
-```css
-/* Ajouter ces médias queries */
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .nav-links {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-}
-```
-
-Ce code constitue une base solide qui intègre :
-- La palette violette/or discutée
-- Les animations au survol
-- Le design responsive
-- La structure pour le mode nuit
-- Les inspirations culturelles dans les motifs
-
-Je peux vous proposer des versions plus avancées avec :
-- Intégration React/Next.js
-- Système de réservation
-- Chatbot IA
-- Carte interactive Mapbox
-
-Dites-moi quelle direction vous souhaitez approfondir ! 🛠️
+</body>
+</html>
