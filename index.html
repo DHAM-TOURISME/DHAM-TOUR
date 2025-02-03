@@ -1,164 +1,282 @@
+Voici un code HTML/CSS de base qui intègre les éléments clés discutés (palette violette, animations, inspirations culturelles, responsive design) :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voyage Immersif | Agence de Tourisme</title>
-    
-    <!-- Polices -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <title>DHAM-TOURISME - Découvrez le Bénin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS intégré critique */
         :root {
-            --primary: #6366f1;
-            --secondary: #4f46e5;
-            --accent: #f59e0b;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --violet-royal: #6A1B9A;
+            --or-danxome: #FFD700;
+            --vert-pendjari: #2E7D32;
+            --ocre-savalou: #BF360C;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom right, #F8F9FA, #FFFFFF);
+        }
+
+        /* En-tête héroïque avec overlay violet */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(45deg, rgba(106, 27, 154, 0.9), rgba(106, 27, 154, 0.6));
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        /* Navigation inspirée des motifs Adinkra */
+        nav {
+            background: var(--violet-royal);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--or-danxome);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Cartes de destinations animées */
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(106, 27, 154, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-category {
+            padding: 0.5rem 1rem;
+            color: white;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            border-radius: 6px;
+        }
+
+        .nature { background: var(--vert-pendjari); }
+        .culture { background: var(--violet-royal); }
+        .histoire { background: var(--ocre-savalou); }
+
+        /* Style premium */
+        .premium-section {
+            background: var(--violet-royal);
+            color: var(--or-danxome);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .premium-badge {
+            background: linear-gradient(45deg, var(--or-danxome), #FFFFFF);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 2.5rem;
+        }
+
+        /* Mode Nuit Africaine */
+        .dark-mode {
+            background: #0A0819;
+            color: #E0E0E0;
+        }
+
+        .constellation-bg {
+            background-image: url('constellations-yoruba.png'); /* À remplacer */
+            background-size: cover;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .destination-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="#" class="brand">
-                <span>Voyage</span>Immersif
-            </a>
-            
-            <div class="nav-links">
-                <a href="#destinations">Destinations</a>
-                <a href="#experiences">Expériences</a>
-                <a href="#about">À propos</a>
-                <a href="#contact" class="cta">Contact</a>
-            </div>
-            
-            <button class="nav-toggle">
-                <span></span>
-                <span></span>
-            </button>
-        </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#premium">Premium</a></li>
+            <li><a href="#culture">Culture</a></li>
+        </ul>
     </nav>
 
-    <!-- Section Hero -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span>Explorez</span>
-                <span>Découvrez</span>
-                <span>Vivez</span>
-            </h1>
-            
-            <div class="hero-scroll">
-                <span>Scroll</span>
-                <div class="scroll-line"></div>
+    <section class="hero">
+        <!-- Remplacer par vidéo réelle -->
+        <div class="hero-overlay">
+            <div>
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 3.5rem;">
+                    Le Bénin Réinventé
+                </h1>
+                <p style="font-size: 1.5rem; margin: 2rem 0;">
+                    Découvrez l'Afrique Authentique
+                </p>
+                <button style="background: var(--or-danxome); color: var(--violet-royal); 
+                    padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer;">
+                    Commencer l'Exploration
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Section Destinations -->
-    <section class="destinations-section" id="destinations">
-        <div class="section-container">
-            <h2 class="section-title">Nos Destinations Phares</h2>
-            
-            <div class="destinations-grid">
-                <div class="destination-card">
-                    <div class="card-content">
-                        <h3>Bénin Mystique</h3>
-                        <p>Découvrez les secrets du berceau du Vodoun</p>
-                        <a href="#" class="card-cta">
-                            Explorer
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="card-image">
-                        <div class="image-placeholder"></div>
-                    </div>
-                </div>
-                
-                <!-- Répéter pour d'autres destinations -->
+    <section id="destinations" class="destination-grid">
+        <!-- Carte 1 -->
+        <div class="destination-card">
+            <div class="card-category nature">Nature</div>
+            <img src="pendjari.jpg" alt="Parc de la Pendjari" style="width: 100%; height: 200px; object-fit: cover;">
+            <div style="padding: 1.5rem;">
+                <h3>Parc National de la Pendjari</h3>
+                <p>Dernier sanctuaire des éléphants d'Afrique de l'Ouest</p>
+            </div>
+        </div>
+
+        <!-- Carte 2 -->
+        <div class="destination-card">
+            <div class="card-category culture">Culture</div>
+            <img src="ouidah.jpg" alt="Route des Esclaves" style="width: 100%; height: 200px; object-fit: cover;">
+            <div style="padding: 1.5rem;">
+                <h3>Route des Esclaves à Ouidah</h3>
+                <p>Marchez sur les traces de l'histoire</p>
             </div>
         </div>
     </section>
 
-    <!-- Section Contact -->
-    <section class="contact-section" id="contact">
-        <div class="section-container">
-            <h2 class="section-title">Prêt à partir ?</h2>
-            
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+229 66953934</p>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Nom complet" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Votre message" rows="5"></textarea>
-                    </div>
-                    <button type="submit">Envoyer</button>
-                </form>
-            </div>
-        </div>
+    <section id="premium" class="premium-section">
+        <h2 class="premium-badge">Offre Premium</h2>
+        <p style="font-size: 1.2rem;">Accès exclusif aux expériences VIP</p>
+        <button style="background: transparent; border: 2px solid var(--or-danxome); 
+            color: var(--or-danxome); padding: 1rem 2rem; margin-top: 2rem; 
+            transition: all 0.3s ease;" 
+            onmouseover="this.style.background='var(--or-danxome)'; this.style.color='var(--violet-royal)'"
+            onmouseout="this.style.background='transparent'; this.style.color='var(--or-danxome)'">
+            Devenir Membre
+        </button>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h4>Voyage Immersif</h4>
-                <p>Agence de voyage innovante<br>Licence: DED 930141</p>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Liens rapides</h4>
-                <ul>
-                    <li><a href="#">Destinations</a></li>
-                    <li><a href="#">Expériences</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">CGV</a></li>
-                    <li><a href="#">Confidentialité</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
     <script>
-        // Navigation mobile
-        const navToggle = document.querySelector('.nav-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        // Script basique pour le mode sombre
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('constellation-bg');
+        }
+        
+        // Ajouter un écouteur d'événement sur un bouton (à implémenter)
     </script>
 </body>
 </html>
+```
+
+Pour compléter ce code, vous devrez :
+
+1. **Ajouter les médias** :
+   - Remplacer `pendjari.jpg` et `ouidah.jpg` par vos propres images
+   - Créer/ajouter une vidéo d'arrière-plan pour la section héro
+   - Ajouter le PNG des constellations pour le mode nuit
+
+2. **Améliorer les fonctionnalités** :
+```javascript
+// Ajouter ce script pour les animations avancées
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('mouseover', () => {
+        link.style.transform = 'translateY(-3px)';
+    });
+    link.addEventListener('mouseout', () => {
+        link.style.transform = 'translateY(0)';
+    });
+});
+
+// Activer le mode nuit
+document.querySelector('#dark-mode-toggle').addEventListener('click', toggleDarkMode);
+```
+
+3. **Optimiser pour le mobile** :
+```css
+/* Ajouter ces médias queries */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+```
+
+Ce code constitue une base solide qui intègre :
+- La palette violette/or discutée
+- Les animations au survol
+- Le design responsive
+- La structure pour le mode nuit
+- Les inspirations culturelles dans les motifs
+
+Je peux vous proposer des versions plus avancées avec :
+- Intégration React/Next.js
+- Système de réservation
+- Chatbot IA
+- Carte interactive Mapbox
+
+Dites-moi quelle direction vous souhaitez approfondir ! 🛠️
