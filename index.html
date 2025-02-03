@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHAM-TOURISME - Bénin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --violet-royal: #6A1B9A;
             --or-danxome: #FFD700;
             --vert-pendjari: #2E7D32;
             --ocre-savalou: #BF360C;
+            --noir-profond: #0A0819;
         }
 
         * {
@@ -21,6 +22,8 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
         }
 
         /* Navigation */
@@ -29,61 +32,140 @@
             padding: 1rem;
             position: fixed;
             width: 100%;
+            top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .nav-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 2rem;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--or-danxome);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            transform: translateY(-2px);
         }
 
         /* Section Héro */
         .hero {
             height: 100vh;
+            background: linear-gradient(rgba(106, 27, 154, 0.8), rgba(106, 27, 154, 0.5)),
+                        url('https://example.com/hero-bg.jpg');
+            background-size: cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(106, 27, 154, 0.8), rgba(106, 27, 154, 0.5)),
-                        url('https://picsum.photos/1920/1080');
-            background-size: cover;
             color: white;
-            padding-top: 60px;
+            margin-top: 60px;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 4rem);
+            font-size: 3.5rem;
             margin-bottom: 1rem;
         }
 
-        /* Carte Interactive */
-        #map {
-            width: 95%;
-            height: 500px;
-            margin: 2rem auto;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        /* Cartes Destinations */
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(106, 27, 154, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .destination-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-category {
+            padding: 0.5rem 1rem;
+            color: white;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .nature { background: var(--vert-pendjari); }
+        .culture { background: var(--violet-royal); }
+        .histoire { background: var(--ocre-savalou); }
+
+        /* Section Premium */
+        .premium-section {
+            background: var(--violet-royal);
+            color: var(--or-danxome);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        /* Mode Nuit */
+        .dark-mode {
+            background: var(--noir-profond);
+            color: #e0e0e0;
+        }
+
+        .dark-mode .destination-card {
+            background: #1a1a1a;
+        }
+
+        /* Bouton CTA */
+        .cta-button {
+            background: var(--or-danxome);
+            color: var(--violet-royal);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--or-danxome);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
             .nav-links {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
             }
+        }
 
-            #map {
-                height: 300px;
-            }
+        /* Curseur Personnalisé */
+        body {
+            cursor: url('cursor.png'), auto;
         }
     </style>
 </head>
@@ -91,43 +173,75 @@
     <nav>
         <ul class="nav-links">
             <li><a href="#destinations">Destinations</a></li>
-            <li><a href="#map">Carte</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#premium">Premium</a></li>
+            <li><a href="#culture">Culture</a></li>
         </ul>
     </nav>
 
     <section class="hero">
         <div>
-            <h1>Bienvenue au Bénin</h1>
-            <p>Découvrez une terre d'histoire et de culture</p>
+            <h1>Le Bénin Réinventé</h1>
+            <p>Découvrez l'Afrique Authentique</p>
+            <button class="cta-button">Commencer l'Exploration</button>
         </div>
     </section>
 
-    <div id="map"></div>
+    <section class="destination-grid">
+        <div class="destination-card">
+            <div class="card-category nature">Nature</div>
+            <img src="pendjari.jpg" alt="Parc Pendjari">
+            <div class="card-content">
+                <h3>Parc National de la Pendjari</h3>
+                <p>Sanctuaire de la faune africaine</p>
+            </div>
+        </div>
+
+        <div class="destination-card">
+            <div class="card-category culture">Culture</div>
+            <img src="ouidah.jpg" alt="Route des Esclaves">
+            <div class="card-content">
+                <h3>Route des Esclaves à Ouidah</h3>
+                <p>Marchez sur les traces de l'histoire</p>
+            </div>
+        </div>
+    </section>
+
+    <button id="dark-mode-toggle" style="position: fixed; bottom: 20px; right: 20px; padding: 10px; border-radius: 50%; background: var(--violet-royal); color: var(--or-danxome); border: none; cursor: pointer;">🌙</button>
 
     <script>
-        // Initialisation Mapbox
-        mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
+        // Mode Nuit
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
         
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v12',
-            center: [2.5, 9.5], // Coordonnées du Bénin
-            zoom: 6
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        // Charger le mode sauvegardé
+        window.addEventListener('load', () => {
+            if(localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
         });
 
-        // Ajout des marqueurs
-        const destinations = [
-            { name: "Pendjari", coord: [1.5, 10.3] },
-            { name: "Ouidah", coord: [2.1, 6.4] }
-        ];
-
-        destinations.forEach(dest => {
-            new mapboxgl.Marker({ color: '#6A1B9A' })
-                .setLngLat(dest.coord)
-                .setPopup(new mapboxgl.Popup().setText(dest.name))
-                .addTo(map);
+        // Animation au défilement
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
         });
+
+        document.querySelectorAll('.destination-card').forEach(card => {
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Curseur personnalisé (remplacer 'cursor.png' par votre fichier)
+        document.body.style.cursor = "url('cursor.png'), auto";
     </script>
 </body>
 </html>
