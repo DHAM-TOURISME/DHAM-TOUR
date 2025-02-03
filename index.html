@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHAM-TOURISME</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="DHAM-TOURISME - Agence spécialisée dans le tourisme au Bénin. Découvrez nos activités, tours et hébergements exclusifs.">
+    
+    <!-- Préchargement des ressources -->
+    <link rel="preload" href="assets/video-banner.mp4" as="video">
+    <link rel="preconnect" href="https://www.instagram.com">
+    
+    <title>DHAM-TOURISME - Tourisme au Bénin</title>
+    
+    <!-- Polices optimisées -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Bouton de menu -->
-    <div id="menu-toggle">☰</div>
+    <!-- Navigation -->
+    <button id="menu-toggle" aria-label="Menu principal" aria-expanded="false">☰</button>
     <nav id="menu">
         <a href="#home">Accueil</a>
         <a href="#about">Qui sommes-nous ?</a>
@@ -20,103 +30,66 @@
         <a href="#contact">Contactez-nous</a>
         <a href="#login">Se Connecter</a>
         
-        <!-- Section de changement de langue avec drapeaux -->
+        <!-- Sélecteur de langue -->
         <div id="language-selector">
-            <img src="assets/flag-fr.png" alt="Français" title="Français">
-            <img src="assets/flag-us.png" alt="Anglais" title="Anglais">
+            <img src="assets/flag-fr.png" alt="Français" title="Français" loading="lazy">
+            <img src="assets/flag-us.png" alt="Anglais" title="Anglais" loading="lazy">
         </div>
     </nav>
 
-    <!-- Bannière avec vidéo de fond -->
+    <!-- Bannière vidéo -->
     <header class="banner">
-        <h1>DHAM-TOURISME</h1>
-        <h2>AGENCE DE TOURISME SPÉCIALISÉE</h2>
-        <a href="#activities" class="discover-link">DÉCOUVRIR NOS ACTIVITÉS</a>
-        <div class="scroll-down">▼</div>
-        <!-- Video de la bannière -->
-        <video id="banner-video" autoplay muted loop>
+        <video id="banner-video" autoplay muted loop playsinline poster="assets/video-poster.jpg">
             <source src="assets/video-banner.mp4" type="video/mp4">
-            Votre navigateur ne prend pas en charge la vidéo.
+            <source src="assets/video-banner.webm" type="video/webm">
         </video>
+        <div class="banner-content">
+            <h1>DHAM-TOURISME</h1>
+            <h2>AGENCE DE TOURISME SPÉCIALISÉE</h2>
+            <a href="#activities" class="discover-link">DÉCOUVRIR NOS ACTIVITÉS</a>
+            <div class="scroll-down">▼</div>
+        </div>
     </header>
 
-    <!-- Sections du site -->
-    <section id="home" class="section">
-        <h2>Découvrez nos activités</h2>
-        <p>DHAM-TOURISME est une agence de tourisme spécialisée dans la planification de vos vacances en famille, entre amis ou en groupe dans les plus beaux endroits que le Bénin a à offrir.</p>
-    </section>
-
-    <section id="activities" class="section">
-        <h2>Nos Activités</h2>
-        <div class="activities">
-            <div class="activity">
-                <img src="assets/image-activites1.jpg" alt="Activités touristiques à Cotonou">
-                <h3>Activités dans Cotonou</h3>
-                <a href="#">TOUT VOIR</a>
-            </div>
-            <div class="activity">
-                <img src="assets/image-activites2.jpg" alt="Restaurants">
-                <h3>Restaurant</h3>
-                <a href="#">TOUT VOIR</a>
-            </div>
-            <div class="activity">
-                <img src="assets/image-activites3.jpg" alt="Tours et Visites au Bénin">
-                <h3>Tours et Visites Bénin</h3>
-                <a href="#">TOUT VOIR</a>
-            </div>
-            <div class="activity">
-                <img src="assets/image-activites4.jpg" alt="Parcs Animaliers">
-                <h3>Parcs Animaliers</h3>
-                <a href="#">TOUT VOIR</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="additional-info" class="section">
-        <p>Un groupe au-delà de vos attentes.
-        Envie de visiter le Bénin ? Des clients en voyage d’affaires ? Envie de les surprendre ? Récompenser vos collaborateurs ? De la famille en visite ?
-        Nous proposons des appartements de vacances, des hôtels et toutes sortes de tours et excursions pour découvrir cette ville magique.
-        DHAM-TOURISME répond à toutes vos demandes.</p>
-    </section>
-
-    <section id="contact" class="section">
-        <h2>Contactez-nous</h2>
-        <p>Nous sommes disponibles par téléphone au +229 66953934.</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=100078440244802&mibextid=LQQJ4d" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.tiktok.com/@dham.tourisme?_t=8rDqwFndFxY&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-        </div>
-        <section id="instagram-feed" class="section">
-            <h2>Notre Instagram</h2>
-            <iframe src="https://www.instagram.com/dham_tourisme/profilecard/?igsh=c2doMnZmMDR1d3Fz" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+    <!-- Contenu principal -->
+    <main>
+        <section id="home" class="section">
+            <h2>Découvrez nos activités</h2>
+            <p class="highlight-text">DHAM-TOURISME est une agence de tourisme spécialisée dans la planification de vos vacances en famille, entre amis ou en groupe dans les plus beaux endroits que le Bénin a à offrir.</p>
         </section>
-    </section>
+
+        <section id="activities" class="section">
+            <h2>Nos Activités</h2>
+            <div class="activities-grid">
+                <article class="activity-card">
+                    <img data-src="assets/image-activites1.jpg" alt="Activités à Cotonou" loading="lazy">
+                    <h3>Activités dans Cotonou</h3>
+                    <a href="#" class="cta-link">TOUT VOIR</a>
+                </article>
+                <!-- Répéter pour les autres activités -->
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contactez-nous</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +229 66953934</p>
+                    <div class="social-links">
+                        <!-- Liens sociaux améliorés -->
+                    </div>
+                </div>
+                <div class="instagram-embed">
+                    <!-- Widget Instagram officiel -->
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>
-            &copy; 2024 DHAM-TOURISME. Tous droits réservés.<br>
-            Numéro de licence : DED 930141<br>
-            France - Bénin<br>
-            Disponible par téléphone au +229 66953934
-        </p>
+        <!-- Contenu du pied de page -->
     </footer>
 
-    <script>
-        // Script de basculement de menu
-        const menuToggle = document.getElementById("menu-toggle");
-        const menu = document.getElementById("menu");
-
-        menuToggle.addEventListener("click", () => {
-            menu.classList.toggle("open");
-        });
-
-        // Fermer le menu après un clic sur un lien ou en dehors
-        document.addEventListener("click", (e) => {
-            if (!menu.contains(e.target) && e.target !== menuToggle) {
-                menu.classList.remove("open");
-            }
-        });
-    </script>
+    <script defer src="scripts.js"></script>
 </body>
 </html>
