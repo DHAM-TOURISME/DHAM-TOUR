@@ -1,229 +1,151 @@
-/* Styles de base */
-* {
+/* Variables CSS */
+:root {
+    --primary: #6A5ACD;
+    --secondary: #4B0082;
+    --accent: #FFD700;
+    --light: #F8F9FF;
+    --dark: #2A2D34;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset moderne */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background: var(--light);
     overflow-x: hidden;
-    background-color: #f0f8ff;
-    color: #333;
-    padding-top: 60px; /* Ajuste cette valeur en fonction de la hauteur du menu */
 }
 
-/* Style du menu */
+/* Navigation */
 #menu-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    background: var(--primary);
+    color: var(--light);
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
     cursor: pointer;
-    z-index: 10;
-    font-size: 1.8em;
-    color: #333;
+    transition: var(--transition);
 }
 
 #menu {
-    display: none; /* Masqué par défaut */
     position: fixed;
     top: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.9);
-    width: 250px;
-    height: 100%;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    padding-top: 60px;
-    z-index: 9;
-    overflow-y: auto;
-}
-
-/* Affiche le menu lorsqu'il est ouvert */
-#menu.open {
-    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
+    padding: 2rem;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.1);
 }
 
-#menu a {
-    display: block;
-    padding: 15px 20px;
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1em;
-    border-bottom: 1px solid #ddd;
+#menu.open {
+    transform: translateX(0);
 }
 
-#menu a:hover {
-    background-color: #f0f8ff;
-}
-
-/* Style de la bannière vidéo */
+/* Bannière vidéo */
 .banner {
     position: relative;
-    width: 100%;
-    height: 100vh;
-    background: url('image-banner.jpg') no-repeat center center/cover;
-    color: #fff;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    flex-direction: column;
+    color: var(--light);
+    padding: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 #banner-video {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
     object-fit: cover;
-    z-index: -1; /* Met la vidéo en arrière-plan */
+    opacity: 0.9;
 }
 
-.banner h1 {
-    font-size: 2em;
-    font-weight: normal;
-    margin-bottom: 0.5em;
+/* Activités */
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
 }
 
-.banner h2 {
-    font-size: 3em;
-    font-weight: bold;
+.activity-card {
+    background: var(--light);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: var(--transition);
 }
 
-.banner .discover-link {
-    display: inline-block;
-    margin-top: 1em;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 1.1em;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+.activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
-.banner .discover-link:hover {
-    background-color: #0056b3;
-}
-
-/* Transition de défilement */
-.scroll-down {
-    position: absolute;
-    bottom: 20px;
-    font-size: 1.5em;
-    color: #fff;
-    cursor: pointer;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Styles des sections */
-.section {
-    padding: 80px 20px;
-    text-align: center;
-}
-
-.section h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-/* Style des activités */
-.activities {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-}
-
-.activity {
-    width: 200px;
-    margin: 15px;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-}
-
-.activity img {
+.activity-card img {
     width: 100%;
-    border-radius: 8px;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.activity a {
-    display: inline-block;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.activity a:hover {
-    text-decoration: underline;
-}
-
-/* Liens vers les réseaux sociaux */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-links a {
-    font-size: 1.5em;
-    color: #333;
-}
-
-.social-links i {
-    font-size: 1.8em;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-.social-links i:hover {
-    color: #007bff;
-}
-
-/* Pied de page */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #f0f8ff;
-    color: #333;
-}
-
-footer p {
-    margin: 5px 0;
-}
-
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
-    /* Ajuster la bannière pour les petits écrans */
-    .banner h1 {
-        font-size: 1.5em;
+    .banner {
+        min-height: 70vh;
     }
-
-    .banner h2 {
-        font-size: 2em;
+    
+    .activities-grid {
+        grid-template-columns: 1fr;
     }
-
-    /* Redimensionner les cartes d'activité */
-    .activity {
-        width: 90%;
-        margin: 10px 0;
-    }
-
+    
     #menu {
-        width: 80%; /* Menu plus étroit sur petits écrans */
+        max-width: 85%;
     }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Optimisations spécifiques */
+img[data-src] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img.loaded {
+    opacity: 1;
 }
