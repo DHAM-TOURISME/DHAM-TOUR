@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHAM-TOURISME - Découvrez le Bénin</title>
+    <title>DHAM-TOURISME - Bénin</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,43 +11,22 @@
             --or-danxome: #FFD700;
             --vert-pendjari: #2E7D32;
             --ocre-savalou: #BF360C;
+            --noir-profond: #0A0819;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            background: linear-gradient(to bottom right, #F8F9FA, #FFFFFF);
+            background: #f8f9fa;
+            transition: all 0.3s ease;
         }
 
-        /* En-tête héroïque avec overlay violet */
-        .hero {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-
-        .hero-overlay {
-            background: linear-gradient(45deg, rgba(106, 27, 154, 0.9), rgba(106, 27, 154, 0.6));
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        /* Navigation inspirée des motifs Adinkra */
+        /* Navigation */
         nav {
             background: var(--violet-royal);
             padding: 1rem;
@@ -70,7 +49,6 @@
             text-decoration: none;
             font-weight: 700;
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .nav-links a:hover {
@@ -78,7 +56,27 @@
             transform: translateY(-2px);
         }
 
-        /* Cartes de destinations animées */
+        /* Section Héro */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(106, 27, 154, 0.8), rgba(106, 27, 154, 0.5)),
+                        url('https://example.com/hero-bg.jpg');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Cartes Destinations */
         .destination-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -92,11 +90,14 @@
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(106, 27, 154, 0.1);
             transition: transform 0.3s ease;
-            cursor: pointer;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        .destination-card:hover {
-            transform: translateY(-10px);
+        .destination-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .card-category {
@@ -106,13 +107,14 @@
             top: 1rem;
             left: 1rem;
             border-radius: 6px;
+            font-weight: bold;
         }
 
         .nature { background: var(--vert-pendjari); }
         .culture { background: var(--violet-royal); }
         .histoire { background: var(--ocre-savalou); }
 
-        /* Style premium */
+        /* Section Premium */
         .premium-section {
             background: var(--violet-royal);
             color: var(--or-danxome);
@@ -120,33 +122,50 @@
             text-align: center;
         }
 
-        .premium-badge {
-            background: linear-gradient(45deg, var(--or-danxome), #FFFFFF);
-            -webkit-background-clip: text;
-            color: transparent;
-            font-size: 2.5rem;
-        }
-
-        /* Mode Nuit Africaine */
+        /* Mode Nuit */
         .dark-mode {
-            background: #0A0819;
-            color: #E0E0E0;
+            background: var(--noir-profond);
+            color: #e0e0e0;
         }
 
-        .constellation-bg {
-            background-image: url('constellations-yoruba.png'); /* À remplacer */
-            background-size: cover;
+        .dark-mode .destination-card {
+            background: #1a1a1a;
         }
 
-        /* Responsive Design */
+        /* Bouton CTA */
+        .cta-button {
+            background: var(--or-danxome);
+            color: var(--violet-royal);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--or-danxome);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .destination-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .hero h1 {
                 font-size: 2.5rem;
             }
+            
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        /* Curseur Personnalisé */
+        body {
+            cursor: url('cursor.png'), auto;
         }
     </style>
 </head>
@@ -160,76 +179,69 @@
     </nav>
 
     <section class="hero">
-        <!-- Remplacer par vidéo réelle -->
-        <div class="hero-overlay">
-            <div>
-                <h1 style="font-family: 'Playfair Display', serif; font-size: 3.5rem;">
-                    Le Bénin Réinventé
-                </h1>
-                <p style="font-size: 1.5rem; margin: 2rem 0;">
-                    Découvrez l'Afrique Authentique
-                </p>
-                <button style="background: var(--or-danxome); color: var(--violet-royal); 
-                    padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer;">
-                    Commencer l'Exploration
-                </button>
-            </div>
+        <div>
+            <h1>Le Bénin Réinventé</h1>
+            <p>Découvrez l'Afrique Authentique</p>
+            <button class="cta-button">Commencer l'Exploration</button>
         </div>
     </section>
 
-    <section id="destinations" class="destination-grid">
-        <!-- Carte 1 -->
+    <section class="destination-grid">
         <div class="destination-card">
             <div class="card-category nature">Nature</div>
-            <img src="pendjari.jpg" alt="Parc de la Pendjari" style="width: 100%; height: 200px; object-fit: cover;">
-            <div style="padding: 1.5rem;">
+            <img src="pendjari.jpg" alt="Parc Pendjari">
+            <div class="card-content">
                 <h3>Parc National de la Pendjari</h3>
-                <p>Dernier sanctuaire des éléphants d'Afrique de l'Ouest</p>
+                <p>Sanctuaire de la faune africaine</p>
             </div>
         </div>
 
-        <!-- Carte 2 -->
         <div class="destination-card">
             <div class="card-category culture">Culture</div>
-            <img src="ouidah.jpg" alt="Route des Esclaves" style="width: 100%; height: 200px; object-fit: cover;">
-            <div style="padding: 1.5rem;">
+            <img src="ouidah.jpg" alt="Route des Esclaves">
+            <div class="card-content">
                 <h3>Route des Esclaves à Ouidah</h3>
                 <p>Marchez sur les traces de l'histoire</p>
             </div>
         </div>
     </section>
 
-    <section id="premium" class="premium-section">
-        <h2 class="premium-badge">Offre Premium</h2>
-        <p style="font-size: 1.2rem;">Accès exclusif aux expériences VIP</p>
-        <button style="background: transparent; border: 2px solid var(--or-danxome); 
-            color: var(--or-danxome); padding: 1rem 2rem; margin-top: 2rem; 
-            transition: all 0.3s ease;" 
-            onmouseover="this.style.background='var(--or-danxome)'; this.style.color='var(--violet-royal)'"
-            onmouseout="this.style.background='transparent'; this.style.color='var(--or-danxome)'">
-            Devenir Membre
-        </button>
-    </section>
+    <button id="dark-mode-toggle" style="position: fixed; bottom: 20px; right: 20px; padding: 10px; border-radius: 50%; background: var(--violet-royal); color: var(--or-danxome); border: none; cursor: pointer;">🌙</button>
 
     <script>
-        // Script basique pour le mode sombre
+        // Mode Nuit
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
-            document.body.classList.toggle('constellation-bg');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         }
-        
-        // Ajouter un écouteur d'événement sur un bouton (à implémenter)
-    </script>
-    document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('mouseover', () => {
-        link.style.transform = 'translateY(-3px)';
-    });
-    link.addEventListener('mouseout', () => {
-        link.style.transform = 'translateY(0)';
-    });
-});
 
-// Activer le mode nuit
-document.querySelector('#dark-mode-toggle').addEventListener('click', toggleDarkMode);
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        // Charger le mode sauvegardé
+        window.addEventListener('load', () => {
+            if(localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // Animation au défilement
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.destination-card').forEach(card => {
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Curseur personnalisé (remplacer 'cursor.png' par votre fichier)
+        document.body.style.cursor = "url('cursor.png'), auto";
+    </script>
 </body>
 </html>
