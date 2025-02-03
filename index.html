@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHAM-TOURISME - Bénin 2.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <!-- React et Mapbox CDN -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -19,34 +18,147 @@
             --ocre-savalou: #BF360C;
         }
         
-        body {
-            font-family: 'Open Sans', sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            background: linear-gradient(to bottom right, #F8F9FA, #FFFFFF);
+            padding: 0;
         }
 
-        /* Styles spécifiques Mapbox */
-        .map-container {
-            height: 500px;
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(to bottom right, #F8F9FA, #FFFFFF);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--violet-royal);
+            padding: 1rem;
+            position: fixed;
             width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--or-danxome);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        /* Section Héro */
+        .hero {
+            height: 90vh;
+            min-height: 400px;
+            padding: 4rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        /* Carte Interactive */
+        .map-container {
+            height: 60vh;
+            min-height: 400px;
+            width: 95%;
+            margin: 2rem auto;
             border-radius: 15px;
-            margin: 2rem 0;
             box-shadow: 0 8px 24px rgba(106, 27, 154, 0.1);
+        }
+
+        /* Section Réservation */
+        .booking-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
         /* Chatbot */
         .chatbot-container {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
+            bottom: 1rem;
+            right: 1rem;
+            width: 90%;
+            max-width: 350px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             z-index: 1000;
         }
 
-        /* Autres styles (comme .hero, .nav, .premium-section, etc.) */
+        .chat-toggle {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.8rem;
+            border-radius: 50%;
+            background: var(--violet-royal);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .hero {
+                height: 70vh;
+                padding: 2rem 1rem;
+            }
+
+            .map-container {
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .chatbot-container {
+                width: 95%;
+                right: 2.5%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -55,73 +167,76 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
-        // Configuration Mapbox
         mapboxgl.accessToken = 'pk.eyJ1IjoiZXhhbXBsZSIsImEiOiJjbHZkNXltdXAwMG5oMmlwY2RqZnN3Y3N6In0.faux-token';
 
         function App() {
             const [showChat, setShowChat] = useState(false);
-            const [bookings, setBookings] = useState([]);
             const mapContainer = useRef(null);
             const map = useRef(null);
 
-            // Initialisation Mapbox
             useEffect(() => {
-                if (map.current) return;
+                if (!mapContainer.current) return;
                 
                 map.current = new mapboxgl.Map({
                     container: mapContainer.current,
                     style: 'mapbox://styles/mapbox/streets-v11',
                     center: [2.5, 9.5],
-                    zoom: 6
+                    zoom: 6,
+                    interactive: true
                 });
 
-                // Ajout des marqueurs
-                destinations.forEach(dest => {
-                    new mapboxgl.Marker({ color: '#6A1B9A' })
-                        .setLngLat([dest.lng, dest.lat])
-                        .addTo(map.current);
-                });
+                return () => map.current?.remove();
             }, []);
-
-            // Système de réservation
-            const handleBooking = async (destinationId) => {
-                const res = await fetch('/api/bookings', {
-                    method: 'POST',
-                    body: JSON.stringify({ destinationId })
-                });
-                const data = await res.json();
-                setBookings([...bookings, data]);
-            };
 
             return (
                 <div className="app-container">
-                    {/* Navigation */}
-                    <nav>{/* ... */}</nav>
+                    <nav>
+                        <ul className="nav-links">
+                            <li><a href="#destinations">Destinations</a></li>
+                            <li><a href="#map">Carte</a></li>
+                            <li><a href="#reservations">Réservations</a></li>
+                        </ul>
+                    </nav>
 
-                    {/* Section Héro */}
-                    <section className="hero">{/* ... */}</section>
+                    <section className="hero">
+                        <div>
+                            <h1>Découvrez le Bénin Autrement</h1>
+                            <p>Une expérience culturelle unique</p>
+                        </div>
+                    </section>
 
-                    {/* Carte Interactive */}
                     <div ref={mapContainer} className="map-container" />
 
-                    {/* Chatbot */}
-                    <button onClick={() => setShowChat(!showChat)} className="chat-toggle">
+                    <button 
+                        onClick={() => setShowChat(!showChat)} 
+                        className="chat-toggle"
+                        aria-label="Ouvrir le chat"
+                    >
                         💬
                     </button>
                     
                     {showChat && (
                         <div className="chatbot-container">
+                            <div className="chat-header">
+                                <h3>Assistant Virtuel</h3>
+                                <button onClick={() => setShowChat(false)}>×</button>
+                            </div>
                             {/* Interface chatbot */}
                         </div>
                     )}
 
-                    {/* Système de réservation */}
                     <div className="booking-section">
                         {destinations.map(dest => (
                             <div key={dest.id} className="destination-card">
+                                <h3>{dest.name}</h3>
                                 <button 
-                                    onClick={() => handleBooking(dest.id)}
                                     className="cta-button"
+                                    style={{
+                                        background: var(--violet-royal),
+                                        color: 'white',
+                                        width: '100%',
+                                        marginTop: '1rem'
+                                    }}
                                 >
                                     Réserver
                                 </button>
@@ -132,27 +247,12 @@
             );
         }
 
-        // Données temporaires
         const destinations = [
-            { id: 1, name: "Pendjari", lng: 1.5, lat: 10.3 },
-            { id: 2, name: "Ouidah", lng: 2.1, lat: 6.4 }
+            { id: 1, name: "Parc de la Pendjari", lng: 1.5, lat: 10.3 },
+            { id: 2, name: "Route des Esclaves", lng: 2.1, lat: 6.4 }
         ];
 
-        // Rendu React
         ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
-
-    <script>
-        // Serveur pour gérer les réservations
-        const express = require('express');
-        const app = express();
-
-        app.post('/api/bookings', (req, res) => {
-            // Logique de réservation
-            res.json({ status: 'success', bookingId: Date.now() });
-        });
-
-        app.listen(3000, () => console.log('Server running on port 3000'));
     </script>
 </body>
 </html>
