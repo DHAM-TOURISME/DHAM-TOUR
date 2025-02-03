@@ -3,93 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DHAM-TOURISME - Agence spécialisée dans le tourisme au Bénin. Découvrez nos activités, tours et hébergements exclusifs.">
+    <meta name="description" content="DHAM-TOURISME - Votre expert en voyages authentiques au Bénin">
     
-    <!-- Préchargement des ressources -->
+    <!-- Préchargements -->
     <link rel="preload" href="assets/video-banner.mp4" as="video">
-    <link rel="preconnect" href="https://www.instagram.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     
-    <title>DHAM-TOURISME - Tourisme au Bénin</title>
+    <!-- Polices Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Polices optimisées -->
+    <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- CSS principal -->
-    <link rel="stylesheet" href="styles.css">
+    <title>DHAM-TOURISME | Tourisme au Bénin</title>
+    <style>
+        /* CSS intégré critique */
+        :root {
+            --primary: #6366f1;
+            --secondary: #4f46e5;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        /* Reset minimal */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; }
+        html { scroll-behavior: smooth; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <button id="menu-toggle" aria-label="Menu principal" aria-expanded="false">☰</button>
-    <nav id="menu">
-        <a href="#home">Accueil</a>
-        <a href="#about">Qui sommes-nous ?</a>
-        <a href="#activities">Nos Activités</a>
-        <a href="#gallery">Galerie</a>
-        <a href="#promotions">Offres Promos</a>
-        <a href="#visa">Visa</a>
-        <a href="#contact">Contactez-nous</a>
-        <a href="#login">Se Connecter</a>
-        
-        <!-- Sélecteur de langue -->
-        <div id="language-selector">
-            <img src="assets/flag-fr.png" alt="Français" title="Français" loading="lazy">
-            <img src="assets/flag-us.png" alt="Anglais" title="Anglais" loading="lazy">
-        </div>
-    </nav>
-
-    <!-- Bannière vidéo -->
-    <header class="banner">
-        <video id="banner-video" autoplay muted loop playsinline poster="assets/video-poster.jpg">
-            <source src="assets/video-banner.mp4" type="video/mp4">
-            <source src="assets/video-banner.webm" type="video/webm">
-        </video>
-        <div class="banner-content">
-            <h1>DHAM-TOURISME</h1>
-            <h2>AGENCE DE TOURISME SPÉCIALISÉE</h2>
-            <a href="#activities" class="discover-link">DÉCOUVRIR NOS ACTIVITÉS</a>
-            <div class="scroll-down">▼</div>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="brand">
+                <img src="logo.png" alt="DHAM-TOURISME" width="120" height="40">
+            </a>
+            
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="#hero" class="nav-link">Accueil</a></li>
+                    <li><a href="#activities" class="nav-link">Activités</a></li>
+                    <li><a href="#gallery" class="nav-link">Galerie</a></li>
+                    <li><a href="#about" class="nav-link">À propos</a></li>
+                    <li><a href="#contact" class="nav-link cta">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Contenu principal -->
-    <main>
-        <section id="home" class="section">
-            <h2>Découvrez nos activités</h2>
-            <p class="highlight-text">DHAM-TOURISME est une agence de tourisme spécialisée dans la planification de vos vacances en famille, entre amis ou en groupe dans les plus beaux endroits que le Bénin a à offrir.</p>
-        </section>
+    <!-- Bannière héro -->
+    <section class="hero-section" id="hero">
+        <div class="video-overlay"></div>
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
+            <source src="assets/hero-video.mp4" type="video/mp4">
+            <source src="assets/hero-video.webm" type="video/webm">
+        </video>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Découvrez le Bénin Autrement</h1>
+            <p class="hero-subtitle">Expériences uniques & souvenirs mémorables</p>
+            <a href="#activities" class="hero-cta">Explorer nos offres</a>
+        </div>
+    </section>
 
-        <section id="activities" class="section">
-            <h2>Nos Activités</h2>
+    <!-- Section Activités -->
+    <section class="activities-section" id="activities">
+        <div class="section-container">
+            <h2 class="section-title">Nos Expérices Phares</h2>
+            
             <div class="activities-grid">
                 <article class="activity-card">
-                    <img data-src="assets/image-activites1.jpg" alt="Activités à Cotonou" loading="lazy">
-                    <h3>Activités dans Cotonou</h3>
-                    <a href="#" class="cta-link">TOUT VOIR</a>
+                    <div class="card-image">
+                        <img src="assets/activity-1.jpg" alt="Cotonou" loading="lazy" 
+                             srcset="assets/activity-1-400.jpg 400w, assets/activity-1-800.jpg 800w"
+                             sizes="(max-width: 600px) 400px, 800px">
+                    </div>
+                    <div class="card-content">
+                        <h3>Aventures Urbaines</h3>
+                        <p>Découverte de Cotonou et ses trésors cachés</p>
+                        <a href="#" class="card-cta">
+                            En savoir plus
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </article>
-                <!-- Répéter pour les autres activités -->
+                
+                <!-- Ajouter 3 autres activity-card -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="section">
-            <h2>Contactez-nous</h2>
-            <div class="contact-wrapper">
+    <!-- Section Contact -->
+    <section class="contact-section" id="contact">
+        <div class="section-container">
+            <div class="contact-grid">
                 <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> +229 66953934</p>
-                    <div class="social-links">
-                        <!-- Liens sociaux améliorés -->
+                    <h2>Prêt à partir ?</h2>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <p>+229 66953934</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="instagram-embed">
-                    <!-- Widget Instagram officiel -->
-                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nom complet" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Adresse email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Votre message"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Envoyer</button>
+                </form>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
-        <!-- Contenu du pied de page -->
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>DHAM-TOURISME</h4>
+                <p>Agence de voyage certifiée<br>Licence: DED 930141</p>
+            </div>
+            <div class="footer-column">
+                <h4>Liens utiles</h4>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Carrières</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#">CGV</a></li>
+                    <li><a href="#">Confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
 
-    <script defer src="scripts.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Navigation mobile
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('active');
+        });
+
+        // Lazy loading amélioré
+        const lazyLoad = (target) => {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        io.unobserve(img);
+                    }
+                });
+            });
+            io.observe(target);
+        };
+
+        document.querySelectorAll('img[data-src]').forEach(lazyLoad);
+    </script>
 </body>
 </html>
