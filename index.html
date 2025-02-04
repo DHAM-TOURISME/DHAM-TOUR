@@ -134,6 +134,16 @@
             }
         }
     </style>
+   <head> -->
+<meta name="description" content="Découvrez le Bénin avec DHAM-TOURISME : Patrimoine culturel, réservations d'hôtels, guides touristiques">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "DHAM-TOURISME",
+  "description": "Agence de tourisme culturel au Bénin"
+}
+</script>
 </head>
 <body>
     <nav>
@@ -164,12 +174,14 @@
     </div>
 
     <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
-
+<iframe src="https://www.google.com/maps/embed?pb=!4v163...&output=embed" 
+        allowfullscreen
+        loading="lazy"></iframe>
     <!-- Scripts JavaScript Intégrés -->
     <script>
         // Configuration Mapbox
-        mapboxgl.accessToken = 'VOTRE_CLE_MAPBOX';
-        const map = new mapboxgl.Map({
+        // Générer un nouveau token avec restrictions
+mapboxgl.accessToken = 'pk.eyJ1IjoiZHhhbXRvdXJpc21l'; // Token limité à votre domaine({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [2.5, 9.5],
@@ -278,6 +290,13 @@
         document.getElementById('exploreBtn').addEventListener('click', () => {
             document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
         });
+        // Intégrez Calendly
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/votre-lien'})">Réserver</button>
     </script>
+    // Service Worker pour le cache
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
 </body>
 </html>
