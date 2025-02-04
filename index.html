@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHAM-TOURISME - Bénin</title>
-    <meta name="description" content="Découvrez le Bénin avec DHAM-TOURISME : Patrimoine culturel, réservations d'hôtels, guides touristiques">
-
+    <meta name="description" content="Découvrez le Bénin avec DHAM-TOURISME : Patrimoine culturel, réservations d'hôtels, guides touristiques.">
+    <meta name="keywords" content="tourisme, Bénin, voyage, culture, réservation, guide">
+    <meta name="author" content="DHAM-TOURISME">
+    
+    <!-- Feuille de style -->
+    <link rel="stylesheet" href="styles.css">
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     
@@ -21,99 +26,10 @@
       "description": "Agence de tourisme culturel au Bénin"
     }
     </script>
-
-    <style>
-        /* Styles CSS */
-        :root {
-            --violet-royal: #6A1B9A;
-            --or-danxome: #FFD700;
-            --vert-pendjari: #2E7D32;
-            --ocre-savalou: #BF360C;
-            --noir-profond: #0A0819;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: #f8f9fa;
-            transition: all 0.3s ease;
-        }
-
-        /* Navigation */
-        nav {
-            background: var(--violet-royal);
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--or-danxome);
-            text-decoration: none;
-            font-weight: 700;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-        }
-
-        /* Section Hero */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(106, 27, 154, 0.8), rgba(106, 27, 154, 0.5)),
-                        url('hero-bg.jpg') no-repeat center center/cover;
-            color: white;
-            padding: 0 1rem;
-            margin-top: 60px;
-        }
-
-        .map-container {
-            height: 600px;
-            width: 100%;
-            margin: 2rem 0;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        /* Chatbot */
-        .chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            z-index: 1000;
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .map-container {
-                height: 400px;
-            }
-        }
-    </style>
 </head>
 <body>
 
+    <!-- Navigation -->
     <nav>
         <ul class="nav-links">
             <li><a href="#destinations">Destinations</a></li>
@@ -122,13 +38,15 @@
         </ul>
     </nav>
 
+    <!-- Section Hero -->
     <section class="hero">
         <div>
             <h1>Découvrez le Bénin Autrement</h1>
-            <button id="exploreBtn">Commencer l'exploration</button>
+            <button class="cta-button" id="exploreBtn">Commencer l'exploration</button>
         </div>
     </section>
 
+    <!-- Carte interactive -->
     <div id="map" class="map-container"></div>
 
     <!-- Chatbot -->
@@ -141,74 +59,17 @@
         <input type="text" id="user-input" placeholder="Posez votre question...">
     </div>
 
+    <!-- Bouton Mode Sombre -->
+    <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+
     <!-- Carte Google Maps -->
     <iframe src="https://www.google.com/maps/embed?pb=!4v163...&output=embed" 
             allowfullscreen
             loading="lazy"></iframe>
 
-    <script>
-        // Configuration Mapbox
-        mapboxgl.accessToken = 'VOTRE_CLE_MAPBOX_ICI';
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [2.5, 9.5],
-            zoom: 6
-        });
+    <!-- Scripts JavaScript -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <script src="script.js"></script>
 
-        // Données des destinations
-        const destinations = [
-            {
-                id: 1,
-                name: "Parc de la Pendjari",
-                coordinates: [1.3962, 10.2665],
-                popupContent: `<h3>Parc de la Pendjari</h3><p>Sanctuaire de la faune africaine</p><button onclick="openBooking(1)">Réserver</button>`
-            }
-        ];
-
-        destinations.forEach(dest => {
-            const popup = new mapboxgl.Popup().setHTML(dest.popupContent);
-            new mapboxgl.Marker({ color: '#6A1B9A' })
-                .setLngLat(dest.coordinates)
-                .setPopup(popup)
-                .addTo(map);
-        });
-
-        function openBooking(destinationId) {
-            const destination = destinations.find(d => d.id === destinationId);
-            alert(`Réservation pour ${destination.name}`);
-        }
-
-        // Chatbot
-        document.getElementById('user-input').addEventListener('keypress', async (e) => {
-            if (e.key === 'Enter') {
-                const userMessage = e.target.value;
-                alert(`Message envoyé : ${userMessage}`);
-                e.target.value = '';
-            }
-        });
-
-        // Dark Mode
-        document.getElementById('darkModeToggle')?.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-        });
-
-        window.addEventListener('load', () => {
-            if (localStorage.getItem('darkMode') === 'true') {
-                document.body.classList.add('dark-mode');
-            }
-        });
-
-        // Intégration Calendly
-        function openCalendly() {
-            Calendly.initPopupWidget({url: 'https://calendly.com/votre-lien'});
-        }
-
-        // Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').catch(err => console.error("Service Worker erreur :", err));
-        }
-    </script>
 </body>
 </html>
