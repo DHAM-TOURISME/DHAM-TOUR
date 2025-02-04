@@ -3,50 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHAM-TOURISME</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <title>DHAM-TOURISME - Bénin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
+    <style>
+        /* Styles CSS existants optimisés */
+        :root {
+            --violet-royal: #6A1B9A;
+            --or-danxome: #FFD700;
+            --vert-pendjari: #2E7D32;
+            --ocre-savalou: #BF360C;
+            --noir-profond: #0A0819;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation améliorée */
+        nav {
+            background: var(--violet-royal);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--or-danxome);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        /* Section Héro responsive */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(106, 27, 154, 0.8), rgba(106, 27, 154, 0.5)),
+                        url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 0 1rem;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Nouveaux styles intégrés */
+        .map-container {
+            height: 600px;
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(106, 27, 154, 0.1);
+        }
+
+        .booking-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            z-index: 1001;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .map-container {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Navigation -->
-      <nav>
-        <div class="nav-logo">DHAM-TOURISME</div>
-        <div class="menu-toggle" id="menu-toggle">☰</div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#home">Accueil</a></li>
-            <li><a href="#services">Services</a></li>
+    <nav>
+        <ul class="nav-links">
             <li><a href="#destinations">Destinations</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#map">Carte</a></li>
+            <li><a href="#premium">Premium</a></li>
         </ul>
     </nav>
-    <!-- Section Hero -->
-    <section class="hero" id="home">
+
+    <section class="hero">
         <div>
             <h1>Découvrez le Bénin Autrement</h1>
-            <button class="cta-button">Commencer l'exploration</button>
+            <button class="cta-button" id="exploreBtn">Commencer l'exploration</button>
         </div>
     </section>
 
-    <!-- Section Contact -->
-    <section id="contact">
-        <h2>Contactez-nous</h2>
-        <p>Email : contact@dham-tourismes.com</p>
-        <p>Téléphone : +229 01 66953934</p>
-    </section>
+    <div id="map" class="map-container"></div>
 
-    <!-- Chatbot -->
-      <!-- Chatbot en bulle flottante -->
-    <div id="chatbot-bubble">💬</div>
-    <div id="chatbot-container">
-        <div class="chatbot-header">
-            <span>Besoin d'aide ?</span>
-            <button id="close-chatbot">✖</button>
+    <div class="chatbot-container" id="chatbot">
+        <div class="chat-header">
+            <h3>Assistant Virtuel</h3>
+            <button onclick="toggleChat()">×</button>
         </div>
-        <div class="chatbot-body">
-            <p>Notre assistant virtuel est là pour vous aider.</p>
-        </div>
+        <div id="chatMessages"></div>
+        <input type="text" id="userInput" placeholder="Posez votre question...">
     </div>
-</body>
 
+    <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+
+    <!-- Scripts JavaScript Intégrés -->
+    <script>
+        // Configuration Mapbox
+        mapboxgl.accessToken = 'VOTRE_CLE_MAPBOX';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [2.5, 9.5],
+            zoom: 6
+        });
+
+        // Données des destinations
+        const destinations = [
+            {
+                id: 1,
+                name: "Parc de la Pendjari",
+                coordinates: [1.3962, 10.2665],
+                popupContent: `<h3>Parc de la Pendjari</h3><p>Sanctuaire de la faune africaine</p><button onclick="openBooking(1)">Réserver</button>`
+            }
+        ];
+
+        // Ajout des marqueurs
+        destinations.forEach(dest => {
+            const popup = new mapboxgl.Popup().setHTML(dest.popupContent);
+            new mapboxgl.Marker({ color: '#6A1B9A' })
+                .setLngLat(dest.coordinates)
+                .setPopup(popup)
+                .addTo(map);
+        });
+
+        // Système de Réservation
+        function openBooking(destinationId) {
+            const destination = destinations.find(d => d.id === destinationId);
+            const modalHtml = `
+                <div class="booking-modal">
+                    <h3>Réserver ${destination.name}</h3>
+                    <input type="date" id="bookingDate">
+                    <button onclick="confirmBooking(${destinationId})">Confirmer</button>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+
+        function confirmBooking(destinationId) {
+            const date = document.getElementById('bookingDate').value;
+            console.log(`Réservation confirmée pour le ${date}`);
+            document.querySelector('.booking-modal').remove();
+        }
+
+        // Chatbot IA
+        let isChatOpen = false;
+        function toggleChat() {
+            const chat = document.getElementById('chatbot');
+            chat.style.display = isChatOpen ? 'none' : 'block';
+            isChatOpen = !isChatOpen;
+        }
+
+        document.getElementById('userInput').addEventListener('keypress', async (e) => {
+            if (e.key === 'Enter') {
+                const userMessage = e.target.value;
+                const chatMessages = document.getElementById('chatMessages');
+                
+                // Simulation réponse IA
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer VOTRE_CLE_OPENAI'
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo",
+                        messages: [{role: "user", content: userMessage}]
+                    })
+                });
+                
+                const data = await response.json();
+                chatMessages.innerHTML += `<div class="message">${data.choices[0].message.content}</div>`;
+                e.target.value = '';
+            }
+        });
+
+        // Dark Mode
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+
+        // Charger le mode sombre
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // Animation au défilement
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.destination-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Scroll vers la carte
+        document.getElementById('exploreBtn').addEventListener('click', () => {
+            document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
 </html>
