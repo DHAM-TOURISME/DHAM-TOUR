@@ -10,9 +10,9 @@
 <body>
 
     <!-- Navigation -->
-    <nav>
+      <nav>
         <div class="nav-logo">DHAM-TOURISME</div>
-        <div class="menu-toggle" id="menu-toggle">&#9776;</div> <!-- Icône Hamburger -->
+        <div class="menu-toggle" id="menu-toggle">☰</div>
         <ul class="nav-links" id="nav-links">
             <li><a href="#home">Accueil</a></li>
             <li><a href="#services">Services</a></li>
@@ -20,7 +20,6 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-
     <!-- Section Hero -->
     <section class="hero" id="home">
         <div>
@@ -37,14 +36,17 @@
     </section>
 
     <!-- Chatbot -->
-    <div class="chatbot-bubble" id="chatbot-bubble">💬</div> <!-- Bulle Chatbot -->
-    <div class="chatbot-container" id="chatbot-container">
+      <!-- Chatbot en bulle flottante -->
+    <div id="chatbot-bubble">💬</div>
+    <div id="chatbot-container">
         <div class="chatbot-header">
             <span>Besoin d'aide ?</span>
-            <button id="close-chatbot">&times;</button>
+            <button id="close-chatbot">✖</button>
         </div>
-        <p>Notre assistant virtuel est là pour vous guider.</p>
+        <div class="chatbot-body">
+            <p>Notre assistant virtuel est là pour vous aider.</p>
+        </div>
     </div>
-
 </body>
+
 </html>
