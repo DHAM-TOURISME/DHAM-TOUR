@@ -1,82 +1,97 @@
-/* Variables couleurs */
+/* Définition des couleurs inspirées du site référencé */
 :root {
     --violet-royal: #6A1B9A;
     --or-danxome: #FFD700;
     --noir-profond: #0A0819;
+    --bleu-élégant: #1E2A38;
+    --blanc-pur: #FFFFFF;
+    --gris-clair: #F5F5F5;
 }
 
-/* Réinitialisation */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Style général */
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #f8f9fa;
-    transition: all 0.3s ease;
+    background: var(--gris-clair);
+    color: var(--noir-profond);
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Navigation */
 nav {
-    background: var(--violet-royal);
+    background: var(--bleu-élégant);
     padding: 1rem;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nav-links {
     display: flex;
-    justify-content: center;
     gap: 2rem;
     list-style: none;
+    margin: 0 auto;
 }
 
 .nav-links a {
-    color: var(--or-danxome);
+    color: var(--blanc-pur);
     text-decoration: none;
     font-weight: 700;
-    transition: 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 8px;
+    transition: background 0.3s ease-in-out;
 }
 
 .nav-links a:hover {
-    background: rgba(255, 215, 0, 0.1);
+    background: rgba(255, 215, 0, 0.2);
 }
 
-/* Hero */
+/* Logo */
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--or-danxome);
+}
+
+/* Hero Section */
 .hero {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(rgba(106, 27, 154, 0.8), rgba(106, 27, 154, 0.5)),
+    background: linear-gradient(rgba(30, 42, 56, 0.8), rgba(30, 42, 56, 0.5)),
                 url('hero-bg.jpg') center/cover;
-    color: white;
+    color: var(--blanc-pur);
     padding: 0 1rem;
     margin-top: 60px;
 }
 
-/* Bouton CTA */
+.hero h1 {
+    font-size: 3rem;
+}
+
 .cta-button {
     background: var(--or-danxome);
-    border: none;
-    padding: 12px 24px;
-    font-size: 1rem;
+    color: var(--bleu-élégant);
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: var(--noir-profond);
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    border-radius: 8px;
-    transition: 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .cta-button:hover {
-    background: #e6c300;
+    background: var(--violet-royal);
+    color: var(--blanc-pur);
 }
 
 /* Carte */
@@ -86,6 +101,7 @@ nav {
     margin: 2rem 0;
     border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Chatbot */
@@ -94,39 +110,46 @@ nav {
     bottom: 20px;
     right: 20px;
     width: 350px;
-    background: white;
+    background: var(--blanc-pur);
     border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: none;
 }
 
-/* Mode sombre */
+/* Mode Sombre */
 .dark-mode {
     background: #222;
-    color: white;
+    color: var(--blanc-pur);
+}
+
+.dark-mode nav {
+    background: #111;
+}
+
+.dark-mode .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+                url('hero-bg.jpg') center/cover;
+}
+
+.dark-mode .cta-button {
+    background: var(--violet-royal);
+    color: var(--blanc-pur);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
         flex-direction: column;
+        text-align: center;
         gap: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
     }
 
     .map-container {
         height: 400px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .nav-links {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
     }
 }
