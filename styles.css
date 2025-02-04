@@ -39,6 +39,24 @@ nav {
     display: none;
 }
 
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--blanc-pur);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -123,6 +141,22 @@ nav {
     color: var(--noir-profond);
 }
 
+/* Animation et transitions */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chatbot-body {
+    animation: slideIn 0.3s ease-out;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .menu-toggle {
@@ -135,7 +169,7 @@ nav {
         position: absolute;
         top: 60px;
         right: 10px;
-                background: var(--bleu-élégant);
+        background: var(--bleu-élégant);
         padding: 1rem;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
