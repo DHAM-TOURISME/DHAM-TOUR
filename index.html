@@ -231,7 +231,8 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer VOTRE_CLE_OPENAI'
+                         'Authorization': `Bearer ${process.env.OPENAI_KEY}` // Via backend
+}
                     },
                     body: JSON.stringify({
                         model: "gpt-3.5-turbo",
