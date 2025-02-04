@@ -3,73 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHAM-TOURISME - Bénin</title>
-    <meta name="description" content="Découvrez le Bénin avec DHAM-TOURISME : Patrimoine culturel, réservations d'hôtels, guides touristiques.">
-    <meta name="keywords" content="tourisme, Bénin, voyage, culture, réservation, guide">
-    <meta name="author" content="DHAM-TOURISME">
-    
-    <!-- Feuille de style -->
+    <title>DHAM-TOURISME</title>
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Mapbox -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet">
-
-    <!-- SEO JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "TouristAttraction",
-      "name": "DHAM-TOURISME",
-      "description": "Agence de tourisme culturel au Bénin"
-    }
-    </script>
 </head>
 <body>
 
     <!-- Navigation -->
     <nav>
+        <div class="nav-logo">DHAM-TOURISME</div>
         <ul class="nav-links">
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#destinations">Destinations</a></li>
-            <li><a href="#map">Carte</a></li>
-            <li><a href="#premium">Premium</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Section Hero -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div>
-            <h1>Découvrez le Bénin Autrement</h1>
-            <button class="cta-button" id="exploreBtn">Commencer l'exploration</button>
+            <h1>Explorez le Monde avec DHAM-TOURISME</h1>
+            <p>Découvrez des destinations uniques et profitez d'une expérience de voyage inoubliable.</p>
+            <button class="cta-button">Voir les offres</button>
         </div>
     </section>
 
     <!-- Carte interactive -->
-    <div id="map" class="map-container"></div>
+    <section id="map">
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.8352227587995!2d2.355616915584299!3d6.365888095380197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d5b5e1f3a01%3A0x3f3b5e7c9f7c5e6c!2sCalavi%2C%20B%C3%A9nin!5e0!3m2!1sfr!2s!4v1618349484835!5m2!1sfr!2s"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contactez-nous</h2>
+        <p>Email : contact@dham-tourisme.com</p>
+        <p>Téléphone : +229 90 00 00 00</p>
+    </section>
 
     <!-- Chatbot -->
-    <div id="chatbot" class="chatbot-container">
-        <div class="chat-header">
-            <h3>Guide Virtuel</h3>
-            <button id="closeChat">×</button>
-        </div>
-        <div id="chat-history"></div>
-        <input type="text" id="user-input" placeholder="Posez votre question...">
+    <div class="chatbot-container">
+        <h3>Besoin d'aide ?</h3>
+        <p>Notre assistant virtuel est là pour vous guider.</p>
     </div>
 
-    <!-- Bouton Mode Sombre -->
-    <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
-
-    <!-- Carte Google Maps -->
-    <iframe src="https://www.google.com/maps/embed?pb=!4v163...&output=embed" 
-            allowfullscreen
-            loading="lazy"></iframe>
-
-    <!-- Scripts JavaScript -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
-    <script src="script.js"></script>
+    <!-- Script JavaScript (optionnel) -->
+    <script>
+        // Exemple : Affichage du chatbot après 5 secondes
+        setTimeout(() => {
+            document.querySelector('.chatbot-container').style.display = 'block';
+        }, 5000);
+    </script>
 
 </body>
 </html>
