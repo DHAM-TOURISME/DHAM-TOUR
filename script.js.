@@ -4,9 +4,8 @@
 const menuToggle = document.querySelector('#menu-toggle');
 const navLinks = document.querySelector('#nav-links');
 
-function toggleMenu() {
-  document.getElementById('menu').classList.toggle('open');
-}
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('hidden');
 });
 
 // Validation du formulaire
