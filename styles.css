@@ -1,189 +1,178 @@
-/* Définition des couleurs */
-:root {
-    --violet-royal: #6A1B9A;
-    --or-danxome: #FFD700;
-    --noir-profond: #0A0819;
-    --bleu-élégant: #1E2A38;
-    --blanc-pur: #FFFFFF;
-    --gris-clair: #F5F5F5;
-}
-
-/* Style général */
+/* Styles généraux */
 body {
-    font-family: 'Open Sans', sans-serif;
-    background: var(--gris-clair);
-    color: var(--noir-profond);
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* Menu hamburger */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    margin: 5px 0;
+    background: #4CAF50;
+    transition: all 0.3s;
 }
 
 /* Navigation */
 nav {
-    background: var(--bleu-élégant);
-    padding: 1rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* MENU HAMBURGER */
-.menu-toggle {
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--blanc-pur);
     display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #4CAF50;
+    padding-top: 60px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.nav-links {
+nav.active {
     display: flex;
-    gap: 2rem;
 }
 
-.nav-links a {
-    color: var(--blanc-pur);
+nav a {
+    color: white;
+    padding: 10px;
     text-decoration: none;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
+    font-size: 18px;
+}
+
+nav a:hover {
+    background-color: #45a049;
+}
+
+/* Section Sélection des fruits */
+.fruits-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+}
+
+.fruit {
+    width: 100px;
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
     border-radius: 8px;
+    text-align: center;
 }
 
-.nav-links a:hover {
-    background: rgba(255, 215, 0, 0.1);
+.fruit.selected {
+    border-color: #4CAF50;
 }
 
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 10px;
-        background: var(--bleu-élégant);
-        width: 200px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .nav-links a {
-        display: block;
-        padding: 10px;
-        text-align: center;
-        color: var(--blanc-pur);
-        font-size: 1.2rem;
-    }
-
-    .nav-links a:hover {
-        background: rgba(255, 215, 0, 0.2);
-    }
+.fruit img {
+    width: 100%;
+    border-radius: 50%;
 }
 
-/* CHATBOT FLOTTANT */
-#chatbot-bubble {
+/* Barre de fruits sélectionnés */
+.selected-fruits {
+    padding: 20px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Nos Mélanges */
+#melanges {
+    padding: 20px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.melange {
+    margin-bottom: 20px;
+}
+
+/* Formulaire de commande */
+.order-form {
+    padding: 20px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+    from { box-shadow: 0 0 10px #4CAF50; }
+    to { box-shadow: 0 0 20px #4CAF50; }
+}
+
+/* Footer */
+footer {
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+.social-links img {
+    width: 30px;
+    margin: 5px;
+}
+
+/* Chatbot */
+.chatbot {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: var(--violet-royal);
-    color: var(--blanc-pur);
-    font-size: 2rem;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#chatbot-container {
+.chatbot-interface {
     position: fixed;
     bottom: 80px;
     right: 20px;
-    width: 300px;
-    background: var(--blanc-pur);
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 250px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: none;
-    flex-direction: column;
 }
 
-.chatbot-header {
-    display: flex;
-    justify-content: space-between;
-    background: var(--violet-royal);
-    color: var(--blanc-pur);
+.chat-messages {
+    max-height: 150px;
+    overflow-y: auto;
     padding: 10px;
-    font-size: 1.2rem;
-    border-radius: 10px 10px 0 0;
 }
 
-#close-chatbot {
-    background: none;
-    border: none;
-    color: var(--blanc-pur);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.chatbot-body {
-    padding: 15px;
-    font-size: 1rem;
-    color: var(--noir-profond);
-}
-
-/* Animation et transitions */
-@keyframes slideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.chatbot-body {
-    animation: slideIn 0.3s ease-out;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
+/* Responsive Design */
+@media (min-width: 768px) {
+    nav {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        background: transparent;
+        box-shadow: none;
     }
 
-    .nav-links {
+    .hamburger {
         display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 10px;
-        background: var(--bleu-élégant);
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .nav-links a {
-        display: block;
-        padding: 10px;
-        text-align: center;
-        color: var(--blanc-pur);
-        font-size: 1.2rem;
-    }
-
-    .nav-links a:hover {
-        background: rgba(255, 215, 0, 0.2);
     }
 }
