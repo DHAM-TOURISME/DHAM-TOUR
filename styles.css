@@ -23,12 +23,23 @@ body {
     font-size: 2rem;
 }
 
-.hamburger-menu {
-    font-size: 2rem;
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    cursor: pointer;
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+}
+.bar {
+  height: 4px;
+  background-color: #333;
+}
+#menu {
+  display: none;
+}
+#menu.open {
+  display: block;
 }
 
 /* Section des fruits */
