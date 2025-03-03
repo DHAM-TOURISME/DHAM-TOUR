@@ -5,141 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smoothie Express</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Styles généraux */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-            color: #333;
-        }
-
-        /* Menu hamburger */
-        .hamburger {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            z-index: 1000;
-        }
-        .hamburger span {
-            display: block;
-            width: 100%;
-            height: 4px;
-            margin: 5px 0;
-            background: #4CAF50;
-            transition: all 0.3s;
-        }
-
-        /* Menu actif */
-        nav {
-            display: none;
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 100%;
-            background-color: #4CAF50;
-            padding-top: 60px;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-        }
-        nav.active {
-            display: flex;
-        }
-        nav a {
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        nav a:hover {
-            background-color: #45a049;
-        }
-
-        /* Fruits sélectionnables */
-        .fruits-container {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
-        .fruit {
-            width: 100px;
-            margin: 10px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            border-radius: 8px;
-        }
-        .fruit.selected {
-            border-color: #4CAF50;
-        }
-
-        /* Barre de fruits sélectionnés */
-        .selected-fruits {
-            padding: 20px;
-            background-color: white;
-            margin: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Formulaire de commande */
-        form {
-            padding: 20px;
-            background-color: white;
-            margin: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: blink 1s infinite alternate;
-        }
-        input, button {
-            display: block;
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-        }
-
-        /* Animation pour le formulaire */
-        @keyframes blink {
-            from { box-shadow: 0 0 10px #4CAF50; }
-            to { box-shadow: 0 0 20px #4CAF50; }
-        }
-
-        /* Responsive design */
-        @media (min-width: 768px) {
-            nav {
-                position: static;
-                display: flex;
-                flex-direction: row;
-                background: transparent;
-                box-shadow: none;
-            }
-            .hamburger {
-                display: none;
-            }
-        }
-
-        /* Chatbot basique */
-        .chatbot-interface {
-            position: fixed;
-            bottom: 0;
-            right: 20px;
-            width: 250px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            display: none;
-        }
-        .chat-messages {
-            max-height: 150px;
-            overflow-y: auto;
-            padding: 10px;
-        }
-    </style>
 </head>
 <body>
     <!-- Menu Hamburger -->
@@ -148,45 +13,46 @@
         <span></span>
         <span></span>
     </div>
+
+    <!-- Navigation -->
     <nav id="menu">
         <a href="#order">Commander</a>
-        <a href="#contact">Contact</a>
-        <a href="#fruits">Nos Smoothies</a>
+        <a href="#fruits">Nos Fruits</a>
         <a href="#melanges">Nos Mélanges</a>
+        <a href="#contact">Contact</a>
     </nav>
 
     <!-- Section Sélection des fruits -->
     <section id="fruits" class="fruits-container">
-        <img src="https://via.placeholder.com/100?text=Pomme" class="fruit" onclick="selectFruit('Pomme')" alt="Pomme">
-        <img src="https://via.placeholder.com/100?text=Banane" class="fruit" onclick="selectFruit('Banane')" alt="Banane">
-        <img src="https://via.placeholder.com/100?text=Fraise" class="fruit" onclick="selectFruit('Fraise')" alt="Fraise">
+        <h2>Choisissez vos fruits</h2>
+        <div class="fruit" onclick="selectFruit('Pomme')">
+            <img src="https://via.placeholder.com/100?text=Pomme" alt="Pomme">
+            <p>Pomme</p>
+        </div>
+        <div class="fruit" onclick="selectFruit('Banane')">
+            <img src="https://via.placeholder.com/100?text=Banane" alt="Banane">
+            <p>Banane</p>
+        </div>
+        <div class="fruit" onclick="selectFruit('Fraise')">
+            <img src="https://via.placeholder.com/100?text=Fraise" alt="Fraise">
+            <p>Fraise</p>
+        </div>
+        <!-- Ajoutez plus de fruits ici -->
     </section>
 
     <!-- Barre de fruits sélectionnés -->
-    <div class="selected-fruits">
-        <h2>Fruits sélectionnés :</h2>
+    <section class="selected-fruits">
+        <h2>Vos fruits sélectionnés :</h2>
         <ul id="selected-fruits-list"></ul>
-    </div>
-
-    <!-- Formulaire de commande -->
-    <form id="order">
-        <h2>Passer une commande</h2>
-        <input type="text" id="name" placeholder="Votre nom">
-        <input type="tel" id="phone" placeholder="Numéro de téléphone">
-        <select id="payment-method">
-            <option value="mobile-money">Mobile Money</option>
-            <option value="carte-bancaire">Carte Bancaire</option>
-        </select>
-        <button type="button" onclick="placeOrder()">Passer la commande</button>
-    </form>
+    </section>
 
     <!-- Section Nos Mélanges -->
     <section id="melanges">
-        <h2>Nos Mélanges</h2>
+        <h2>Nos Mélanges de Smoothies</h2>
         <div class="melange">
             <h3>Energie Boost</h3>
             <p>Ingrédients : Banane, Fraise, Mangue</p>
-            <p>Apports : Vitamine C, Energie</p>
+            <p>Apports : Vitamine C, Énergie</p>
         </div>
         <div class="melange">
             <h3>Detox</h3>
@@ -196,45 +62,42 @@
         <!-- Ajoutez plus de mélanges ici -->
     </section>
 
-    <!-- Liens vers réseaux sociaux -->
-    <footer>
-        <a href="https://www.facebook.com/share/165b8UHfZ2/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
-            <img src="https://via.placeholder.com/30?text=FB" alt="Facebook">
-        </a>
-        <a href="https://www.instagram.com/smoothiee_xpress?igsh=bWxqeGxvdW16MWRh&utm_source=qr" target="_blank" rel="noopener noreferrer">
-            <img src="https://via.placeholder.com/30?text=IG" alt="Instagram">
-        </a>
+    <!-- Formulaire de commande -->
+    <section id="order" class="order-form">
+        <h2>Passer une commande</h2>
+        <form>
+            <input type="text" id="name" placeholder="Votre nom" required>
+            <input type="tel" id="phone" placeholder="Numéro de téléphone" required>
+            <select id="payment-method">
+                <option value="mobile-money">Mobile Money</option>
+                <option value="carte-bancaire">Carte Bancaire</option>
+            </select>
+            <button type="button" onclick="placeOrder()">Commander</button>
+        </form>
+    </section>
+
+    <!-- Section Contact -->
+    <footer id="contact">
+        <h2>Contactez-nous</h2>
+        <p>Numéro de paiement : +229 0166953934</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/165b8UHfZ2/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                <img src="https://via.placeholder.com/30?text=FB" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/smoothiee_xpress?igsh=bWxqeGxvdW16MWRh&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                <img src="https://via.placeholder.com/30?text=IG" alt="Instagram">
+            </a>
+        </div>
+        <p>&copy; 2025 Smoothie Express. Tous droits réservés.</p>
     </footer>
 
-    <!-- Chatbot simplifié -->
-    <div class="chatbot-interface" id="chatbot">
-        <div class="chat-messages"></div>
-        <input type="text" class="chat-input" placeholder="Envoyez un message...">
+    <!-- Chatbot -->
+    <div class="chatbot" onclick="toggleChat()">💬</div>
+    <div class="chatbot-interface" id="chatbot-interface">
+        <div class="chat-messages" id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Tapez votre message...">
     </div>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('menu').classList.toggle('active');
-        }
-        function selectFruit(fruit) {
-            const fruitElement = event.currentTarget;
-            fruitElement.classList.toggle('selected');
-            updateSelectedFruits(fruit);
-        }
-        function updateSelectedFruits(fruit) {
-            const list = document.getElementById('selected-fruits-list');
-            const item = document.createElement('li');
-            item.textContent = fruit;
-            list.appendChild(item);
-        }
-        function placeOrder() {
-            const name = document.getElementById('name').value.trim();
-            if (!name) {
-                alert('Veuillez entrer votre nom');
-                return;
-            }
-            alert('Commande passée !');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
