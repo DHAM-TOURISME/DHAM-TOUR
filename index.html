@@ -24,11 +24,9 @@
     <main class="container">
         <!-- Section de personnalisation -->
         <section class="customization">
-            <!-- Barre de recherche -->
             <input type="text" id="searchBar" placeholder="Rechercher un fruit, légume ou super-aliment..." />
             <ul id="results"></ul>
 
-            <!-- Grille d'ingrédients -->
             <div class="ingredient-grid" id="ingredientGrid">
                 <div class="ingredient-card" data-price="200">🍌 Banane (+200 CFA)</div>
                 <div class="ingredient-card" data-price="300">🫚 Gingembre (+300 CFA)</div>
@@ -48,7 +46,6 @@
                 <div class="ingredient-card" data-price="500">🌰 Chia (+500 CFA)</div>
             </div>
 
-            <!-- Affichage du prix total -->
             <div class="price-display">
                 Total : <span id="total-price">0</span> CFA
                 <div class="validation-msg" id="validationMsg">Sélectionnez au moins 4 ingrédients !</div>
@@ -71,7 +68,6 @@
                     <input type="tel" id="clientPhone" placeholder="Numéro de téléphone" pattern="[0-9]{10}" required>
                 </div>
 
-                <!-- Méthodes de paiement -->
                 <div class="payment-methods">
                     <label>Méthode de paiement :</label>
                     <div class="payment-options">
@@ -79,25 +75,66 @@
                             <input type="radio" name="payment" value="mobile" required>
                             <span class="payment-card">📱 Mobile Money</span>
                         </label>
-                        
                     </div>
                 </div>
 
-                <!-- Traitement du paiement -->
                 <div class="payment-processing hidden">
                     <div class="loader"></div>
                     <p>Traitement du paiement...</p>
                 </div>
 
-                <!-- Bouton de validation -->
                 <button type="submit" class="cta-btn animate-pulse">VALIDER MA COMMANDE 💸</button>
             </form>
 
-            <!-- Résumé de la commande -->
             <div class="order-summary hidden" id="orderSummary"></div>
         </section>
 
+        <!-- Section Configurateur de Smoothie -->
+        <section id="smoothie-configurator">
+            <h2>Créez votre smoothie personnalisé</h2>
+            <form id="smoothie-form">
+                <div class="form-group">
+                    <label for="fruits">Fruits :</label>
+                    <select id="fruits" multiple>
+                        <option value="banane">Banane</option>
+                        <option value="fraise">Fraise</option>
+                        <option value="mangue">Mangue</option>
+                        <option value="ananas">Ananas</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="supplements">Compléments :</label>
+                    <select id="supplements" multiple>
+                        <option value="proteine">Protéine</option>
+                        <option value="graines-chia">Graines de chia</option>
+                        <option value="lait-amande">Lait d'amande</option>
+                    </select>
+                </div>
+
+                <button type="button" id="save-recipe">Sauvegarder cette recette</button>
+            </form>
+
+            <div id="saved-recipes">
+                <h3>Vos recettes sauvegardées</h3>
+                <ul id="recipe-list"></ul>
             </div>
+        </section>
+
+        <!-- Section Carte Interactive -->
+        <section id="delivery-map">
+            <h2>Zones de livraison</h2>
+            <div id="map"></div>
+            <p id="delivery-time"></p>
+        </section>
+
+        <!-- Section Suivi de Commande -->
+        <section id="order-tracking">
+            <h2>Suivi de commande</h2>
+            <div id="tracking-status">
+                <p>État de votre commande : <span id="status">En préparation</span></p>
+            </div>
+            <button id="scan-qr">Scanner le QR Code</button>
         </section>
     </main>
 
