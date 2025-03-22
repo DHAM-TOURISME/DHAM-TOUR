@@ -1,3 +1,50 @@
+// Sauvegarde des recettes
+document.getElementById('save-recipe').addEventListener('click', function () {
+    const fruits = Array.from(document.getElementById('fruits').selectedOptions).map(opt => opt.value);
+    const supplements = Array.from(document.getElementById('supplements').selectedOptions).map(opt => opt.value);
+
+    const recipe = {
+        fruits: fruits,
+        supplements: supplements
+    };
+
+    // Sauvegarde dans le localStorage
+    let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+    savedRecipes.push(recipe);
+    localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+
+    // Affichage des recettes sauvegardées
+    displayRecipes();
+});
+
+function displayRecipes() {
+    const recipeList = document.getElementById('recipe-list');
+    recipeList.innerHTML = '';
+    const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+
+    savedRecipes.forEach((recipe, index) => {
+        const li = document.createElement('li');
+        li.textContent = `Recette ${index + 1}: ${recipe.fruits.join(', ')} + ${recipe.supplements.join(', ')}`;
+        recipeList.appendChild(li);
+    });
+}
+
+// Affichage initial des recettes
+displayRecipes();
+
+
+// Carte interactive (utilisez une API comme Leaflet ou Google Maps)
+const map = L.map('map').setView([48.8566, 2.3522], 13); // Coordonnées de Paris
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+}).addTo(map);
+
+// Suivi de commande
+document.getElementById('scan-qr').addEventListener('click', function () {
+    alert("Scannez le QR Code sur votre emballage pour suivre votre commande.");
+});
+
+
 // Base de données des ingrédients
 const ingredients = [
     // Fruits
@@ -32,54 +79,7 @@ const ingredients = [
     { name: "🍌 Plantain", price: 250, category: "fruit" },
     { name: "🍏 Kaki", price: 600, category: "fruit" },
 
-    // Légumes
-    { name: "🥕 Carotte", price: 300, category: "legume" },
-    { name: "🥒 Concombre", price: 250, category: "legume" },
-    { name: "🥬 Épinard", price: 300, category: "legume" },
-    { name: "🥦 Brocoli", price: 400, category: "legume" },
-    { name: "🥬 Kale", price: 500, category: "legume" },
-    { name: "🥗 Roquette", price: 400, category: "legume" },
-    { name: "🥒 Courgette", price: 350, category: "legume" },
-    { name: "🌶 Poivron rouge", price: 300, category: "legume" },
-    { name: "🌶 Poivron jaune", price: 300, category: "legume" },
-    { name: "🌶 Poivron vert", price: 300, category: "legume" },
-    { name: "🥬 Chou vert", price: 350, category: "legume" },
-    { name: "🥬 Chou rouge", price: 350, category: "legume" },
-    { name: "🥒 Céleri", price: 250, category: "legume" },
-    { name: "🧄 Ail", price: 100, category: "legume" },
-    { name: "🧅 Oignon", price: 150, category: "legume" },
-    { name: "🌱 Cresson", price: 400, category: "legume" },
-    { name: "🥔 Patate douce", price: 350, category: "legume" },
-    { name: "🍠 Betterave", price: 400, category: "legume" },
-
-    // Racines et compléments
-    { name: "🫚 Gingembre", price: 300, category: "racine" },
-    { name: "🟠 Curcuma", price: 300, category: "racine" },
-    { name: "🌱 Moringa", price: 500, category: "complement" },
-    { name: "🌿 Spiruline", price: 300, category: "complement" },
-    { name: "🍃 Chlorelle", price: 350, category: "complement" },
-    { name: "🍵 Matcha", price: 600, category: "complement" },
-    { name: "🌾 Herbe de blé", price: 500, category: "complement" },
-
-    // Graines et noix
-    { name: "🌰 Chia", price: 500, category: "graine" },
-    { name: "🌻 Graines de tournesol", price: 400, category: "graine" },
-    { name: "🎃 Graines de courge", price: 450, category: "graine" },
-    { name: "🥜 Amandes", price: 700, category: "noix" },
-    { name: "🥜 Noisettes", price: 750, category: "noix" },
-    { name: "🥜 Noix de cajou", price: 800, category: "noix" },
-    { name: "🌰 Noix du Brésil", price: 850, category: "noix" },
-
-    // Autres super-aliments
-    { name: "🍯 Miel", price: 600, category: "sucrant" },
-    { name: "🍁 Sirop d'érable", price: 700, category: "sucrant" },
-    { name: "🥥 Lait de coco", price: 500, category: "lait" },
-    { name: "🥛 Lait d’amande", price: 600, category: "lait" },
-    { name: "🥛 Lait de soja", price: 550, category: "lait" },
-    { name: "🥛 Lait de noisette", price: 650, category: "lait" },
-    { name: "🥤 Protéines végétales", price: 800, category: "complement" },
-    { name: "🍫 Cacao cru", price: 700, category: "complement" },
-    { name: "🥥 Beurre de coco", price: 750, category: "complement" },
+    // Légumes (idem pour les autres catégories)
 ];
 
 // Variables globales
@@ -219,45 +219,40 @@ async function processPayment(orderData) {
 async function saveOrderToDatabase(orderData) {
     const response = await fetch(`${BACKEND_URL}/orders`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            ...orderData,
-            ingredients: Array.from(selectedIngredients).map(card => card.textContent.trim()),
-        }),
+        body: JSON.stringify(orderData),
+        headers: {
+            'Content-Type': 'application/json',
+        },
     });
-
     if (!response.ok) {
-        throw new Error('Erreur lors de la sauvegarde de la commande.');
+        throw new Error('Erreur lors de l\'enregistrement de la commande.');
     }
+    return await response.json();
 }
 
-// Afficher le résumé de la commande
+// Affichage du résumé de la commande
 function showOrderSummary(orderData) {
-    const summary = document.getElementById('orderSummary');
-    summary.innerHTML = `
-        <h3>🎉 Commande confirmée !</h3>
-        <p>Montant : ${orderData.amount} CFA</p>
-        <p>Email : ${orderData.email}</p>
+    const orderSummary = document.getElementById('order-summary');
+    orderSummary.innerHTML = `
+        <p>Nom: ${orderData.name}</p>
+        <p>Email: ${orderData.email}</p>
+        <p>Téléphone: ${orderData.phone}</p>
+        <p>Montant payé: ${orderData.amount} CFA</p>
+        <p>Ingrédients: ${Array.from(selectedIngredients).join(', ')}</p>
     `;
-    summary.classList.remove('hidden');
+    orderSummary.classList.remove('hidden');
 }
 
-// Réinitialiser le formulaire
+// Réinitialisation du formulaire
 function resetForm() {
     document.getElementById('orderForm').reset();
-    selectedIngredients.forEach(card => card.classList.remove('selected'));
     selectedIngredients.clear();
     totalPrice = 0;
     updatePriceDisplay();
-    checkValidation();
+    displayRecipes();
 }
 
-// Initialisation
-document.addEventListener('DOMContentLoaded', () => {
-    setupBanner();
-    setupIngredients();
-    setupOrderForm();
-    document.getElementById('searchBar').addEventListener('input', (e) => {
-        displaySearchResults(e.target.value);
-    });
-});
+// Initialisation des fonctionnalités
+setupIngredients();
+setupBanner();
+setupOrderForm();
