@@ -285,6 +285,7 @@ input[type="radio"]:checked + .payment-card {
     background: var(--secondary);
     border-radius: 8px;
 }
+
 .blog-section {
     margin-top: 40px;
     padding: 20px;
@@ -328,12 +329,6 @@ input[type="radio"]:checked + .payment-card {
 .blog-article a:hover {
     background-color: #45a049;
 }
-.blog-section {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-}
 
 .swiper {
     width: 100%;
@@ -350,30 +345,81 @@ input[type="radio"]:checked + .payment-card {
     padding: 20px;
 }
 
-.blog-article {
-    text-align: center;
+/* Style pour le configurateur */
+#smoothie-configurator {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.blog-article img {
-    max-width: 100%;
-    border-radius: 8px;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.blog-article h3 {
-    color: #4CAF50;
-    margin-top: 0;
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-.blog-article a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #4CAF50;
+#save-recipe {
+    background-color: #28a745;
     color: white;
-    text-decoration: none;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#saved-recipes {
+    margin-top: 20px;
+}
+
+#recipe-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#recipe-list li {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-bottom: 5px;
     border-radius: 5px;
 }
 
-.blog-article a:hover {
-    background-color: #45a049;
+/* Style pour la carte */
+#delivery-map {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#map {
+    height: 300px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+}
+
+/* Style pour le suivi de commande */
+#order-tracking {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+#tracking-status {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+#scan-qr {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
