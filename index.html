@@ -3,45 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smoothie Express</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Fresh'Mood 🍇 - Créateur de Smoothies</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png" type="image/png">
 </head>
 <body>
-    <header class="header">
-        <h1>Smoothie Express</h1>
-        <nav class="menu">
-            <div class="hamburger-menu">☰</div>
-        </nav>
-    </header>
-    <main>
-        <section class="fruits">
-            <div class="fruit">🍏 Pomme</div>
-            <div class="fruit">🍌 Banane</div>
-            <div class="fruit">🍓 Fraise</div>
-            <div class="fruit">🥭 Mangue</div>
-            <div class="fruit">🍍 Ananas</div>
-            <div class="fruit">🍊 Orange</div>
-            <div class="fruit">🥝 Kiwi</div>
-            <div class="fruit">🥕 Carotte</div>
-            <div class="fruit">🥬 Épinard</div>
-            <div class="fruit">🥑 Avocat</div>
+    <!-- Bannière avec les images -->
+    <div class="promo-banner">
+        <img src="images/banner1.jpg" class="active" alt="Fruits frais">
+        <img src="images/banner2.jpg" alt="Smoothie coloré">
+        <img src="images/banner3.jpg" alt="Fruits exotiques">
+        <img src="images/banner4.jpg" alt="Légumes frais">
+        <img src="images/banner5.jpg" alt="Préparation de smoothie">
+        <img src="images/banner6.jpg" alt="Ingredients sains">
+        <img src="images/banner7.jpg" alt="Fruits découpés">
+    </div>
+
+    <main class="container">
+        <!-- Section de personnalisation -->
+        <section class="customization">
+            <!-- Barre de recherche -->
+            <input type="text" id="searchBar" placeholder="Rechercher un fruit, légume ou super-aliment..." />
+            <ul id="results"></ul>
+
+            <!-- Grille d'ingrédients -->
+            <div class="ingredient-grid" id="ingredientGrid">
+                <div class="ingredient-card" data-price="200">🍌 Banane (+200 CFA)</div>
+                <div class="ingredient-card" data-price="300">🫚 Gingembre (+300 CFA)</div>
+                <div class="ingredient-card" data-price="500">🍓 Fraise (+500 CFA)</div>
+                <div class="ingredient-card" data-price="300">🥭 Mangue (+300 CFA)</div>
+                <div class="ingredient-card" data-price="400">🥥 Noix de coco (+400 CFA)</div>
+                <div class="ingredient-card" data-price="200">🍍 Ananas (+200 CFA)</div>
+                <div class="ingredient-card" data-price="500">🍏 Pomme verte (+500 CFA)</div>
+                <div class="ingredient-card" data-price="600">🥝 Kiwi (+600 CFA)</div>
+                <div class="ingredient-card" data-price="600">🍓 Baies de Goji (+600 CFA)</div>
+                <div class="ingredient-card" data-price="300">🌱 Spiruline (+300 CFA)</div>
+                <div class="ingredient-card" data-price="500">🍑 Pêche (+500 CFA)</div>
+                <div class="ingredient-card" data-price="500">🥥 Açaï (+500 CFA)</div>
+                <div class="ingredient-card" data-price="500">🍇 Raisin (+500 CFA)</div>
+                <div class="ingredient-card" data-price="300">🥕 Carotte (+300 CFA)</div>
+                <div class="ingredient-card" data-price="500">🍉 Pastèque (+500 CFA)</div>
+                <div class="ingredient-card" data-price="500">🌰 Chia (+500 CFA)</div>
+            </div>
+
+            <!-- Affichage du prix total -->
+            <div class="price-display">
+                Total : <span id="total-price">0</span> CFA
+                <div class="validation-msg" id="validationMsg">Sélectionnez au moins 4 ingrédients !</div>
+            </div>
         </section>
-        <section class="order">
-            <h2>Passez votre commande</h2>
-            <form>
-                <input type="text" placeholder="Votre nom" required>
-                <input type="tel" placeholder="Numéro de téléphone" required>
-                <button type="submit">Commander</button>
+
+        <!-- Section de commande -->
+        <section class="order-section">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="clientName">Nom complet</label>
+                    <input type="text" id="clientName" placeholder="Votre nom complet" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientEmail">Adresse email</label>
+                    <input type="email" id="clientEmail" placeholder="Adresse email" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Numéro de téléphone</label>
+                    <input type="tel" id="clientPhone" placeholder="Numéro de téléphone" pattern="[0-9]{10}" required>
+                </div>
+
+                <!-- Méthodes de paiement -->
+                <div class="payment-methods">
+                    <label>Méthode de paiement :</label>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="mobile" required>
+                            <span class="payment-card">📱 Mobile Money</span>
+                        </label>
+                        
+                    </div>
+                </div>
+
+                <!-- Traitement du paiement -->
+                <div class="payment-processing hidden">
+                    <div class="loader"></div>
+                    <p>Traitement du paiement...</p>
+                </div>
+
+                <!-- Bouton de validation -->
+                <button type="submit" class="cta-btn animate-pulse">VALIDER MA COMMANDE 💸</button>
             </form>
+
+            <!-- Résumé de la commande -->
+            <div class="order-summary hidden" id="orderSummary"></div>
+        </section>
+
+            </div>
         </section>
     </main>
-    <footer class="footer">
-        <p>Effectuez vos paiements au +229 0166953934</p>
-        <p>
-            <a href="#" target="_blank">Facebook</a> |
-            <a href="#" target="_blank">Instagram</a>
-        </p>
+
+    <!-- Pied de page -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/16FCKi5gm2/?mibextid=wwXIfr" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/smoothiee_xpress" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p>© 2024 Fresh'Mood - Tous droits réservés</p>
+        </div>
     </footer>
-    <script src="script.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
